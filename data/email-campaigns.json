@@ -1,0 +1,100 @@
+[
+  {
+    "id": "1767454907707",
+    "subject": "Welcome",
+    "message": "How are you doing?",
+    "sentAt": "2026-01-03T15:41:51.069Z",
+    "recipients": [
+      {
+        "email": "olaitanadewale@gmail.com",
+        "trackingId": "8xuse91f44gmjyh0myk",
+        "status": "sent",
+        "sentAt": "2026-01-03T15:41:51.068Z"
+      }
+    ],
+    "totalSent": 1,
+    "totalOpened": 0
+  },
+  {
+    "id": "1767454939529",
+    "subject": "manueloliver2908@gmail.com",
+    "message": "hello",
+    "sentAt": "2026-01-03T15:42:23.546Z",
+    "recipients": [
+      {
+        "email": "test@test.com",
+        "trackingId": "e3ik7k3oldmjyh1bih",
+        "status": "sent",
+        "sentAt": "2026-01-03T15:42:22.142Z"
+      },
+      {
+        "email": "polymerasemedia@gmail.com",
+        "trackingId": "0pt70euoyv2imjyh1bij",
+        "status": "sent",
+        "sentAt": "2026-01-03T15:42:22.277Z"
+      },
+      {
+        "email": "manueloliver2908@gmail.com",
+        "trackingId": "wlqxom9qoi7mjyh1bij",
+        "status": "sent",
+        "sentAt": "2026-01-03T15:42:23.320Z"
+      },
+      {
+        "email": "olaitanadewale@gmail.com",
+        "trackingId": "1klq026s57wmjyh1bii",
+        "status": "sent",
+        "sentAt": "2026-01-03T15:42:23.546Z"
+      }
+    ],
+    "totalSent": 4,
+    "totalOpened": 0
+  },
+  {
+    "id": "1767455215698",
+    "subject": "Hello",
+    "message": "How are you",
+    "sentAt": "2026-01-03T15:46:58.680Z",
+    "recipients": [
+      {
+        "email": "olaitanadewale@gmail.com",
+        "trackingId": "z2xzm4bh82mjyh78lv",
+        "status": "sent",
+        "sentAt": "2026-01-03T15:46:58.679Z"
+      }
+    ],
+    "totalSent": 1,
+    "totalOpened": 0
+  },
+  {
+    "id": "1767455639883",
+    "subject": "Welcome to LuxeStays",
+    "message": "hi",
+    "sentAt": "2026-01-03T15:54:03.433Z",
+    "recipients": [
+      {
+        "email": "olaitanadewale@gmail.com",
+        "trackingId": "fd0flp9co6vmjyhgbwr",
+        "status": "sent",
+        "sentAt": "2026-01-03T15:54:03.433Z"
+      }
+    ],
+    "totalSent": 1,
+    "totalOpened": 0
+  },
+  {
+    "id": "1767455853516",
+    "subject": "Hi",
+    "message": "Hi",
+    "sentAt": "2026-01-03T15:57:36.759Z",
+    "recipients": [
+      {
+        "email": "olaitanadewale@gmail.com",
+        "trackingId": "4972xa8e52imjyhkwr0",
+        "status": "sent",
+        "sentAt": "2026-01-03T15:57:36.759Z"
+      }
+    ],
+    "totalSent": 1,
+    "totalOpened": 0
+  }
+]

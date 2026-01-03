@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "title": "Verified Listings",
+    "description": "Every apartment speaks luxury",
+    "icon": "ShieldCheck",
+    "color": "text-[var(--brand)]",
+    "bgColor": "bg-[var(--brand)]/10"
+  },
+  {
+    "id": "2",
+    "title": "24/7 Support",
+    "description": "Our support team is always available to help you.",
+    "icon": "Clock",
+    "color": "text-[var(--brand)]",
+    "bgColor": "bg-[var(--brand)]/10"
+  },
+  {
+    "id": "3",
+    "title": "Best Rates",
+    "description": "We guarantee the best prices for premium stays.",
+    "icon": "TrendingUp",
+    "color": "text-[var(--brand)]",
+    "bgColor": "bg-[var(--brand)]/10"
+  }
+]

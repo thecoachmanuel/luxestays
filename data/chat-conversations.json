@@ -1,0 +1,39 @@
+[
+  {
+    "id": "29s3i0ueh",
+    "userId": "1u9zn9t32",
+    "userName": "Adewale Olaitan",
+    "userEmail": "olaitanadewale@gmail.com",
+    "lastMessageAt": "2026-01-02T23:44:27.720Z",
+    "unreadCount": 0,
+    "status": "archived"
+  },
+  {
+    "id": "2imo636c2",
+    "userId": "m0srhgx7x",
+    "userName": "test",
+    "userEmail": "test@test.com",
+    "lastMessageAt": "2026-01-03T15:35:17.494Z",
+    "unreadCount": 0,
+    "status": "active"
+  },
+  {
+    "id": "7tfs91nf0",
+    "userId": "1u9zn9t32",
+    "userName": "Adewale Olaitan",
+    "userEmail": "olaitanadewale@gmail.com",
+    "lastMessageAt": "2026-01-02T23:53:28.688Z",
+    "unreadCount": 0,
+    "status": "archived"
+  },
+  {
+    "id": "ybjpsh0yr",
+    "userId": "1u9zn9t32",
+    "userName": "Adewale Olaitan",
+    "userEmail": "olaitanadewale@gmail.com",
+    "lastMessageAt": "2026-01-03T00:04:26.542Z",
+    "unreadCount": 0,
+    "status": "archived",
+    "archivedAt": "2026-01-03T00:04:38.645Z"
+  }
+]

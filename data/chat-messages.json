@@ -1,0 +1,291 @@
+[
+  {
+    "id": "uf18w51va",
+    "conversationId": "29s3i0ueh",
+    "senderId": "",
+    "senderRole": "user",
+    "content": "Hi",
+    "createdAt": "2026-01-02T21:22:58.913Z",
+    "isRead": true
+  },
+  {
+    "id": "r4nttk41s",
+    "conversationId": "29s3i0ueh",
+    "senderId": "",
+    "senderRole": "admin",
+    "content": "how can we help you",
+    "createdAt": "2026-01-02T21:23:31.456Z",
+    "isRead": true
+  },
+  {
+    "id": "w13obgquz",
+    "conversationId": "29s3i0ueh",
+    "senderId": "",
+    "senderRole": "admin",
+    "content": "How may we help you",
+    "createdAt": "2026-01-02T21:28:10.497Z",
+    "isRead": true
+  },
+  {
+    "id": "8jshj5qb8",
+    "conversationId": "29s3i0ueh",
+    "senderId": "",
+    "senderRole": "user",
+    "content": "Thanks I have an issue with my booking",
+    "createdAt": "2026-01-02T21:28:26.862Z",
+    "isRead": true
+  },
+  {
+    "id": "c355iescc",
+    "conversationId": "2imo636c2",
+    "senderId": "m0srhgx7x",
+    "senderRole": "user",
+    "content": "Hi",
+    "createdAt": "2026-01-02T21:48:25.174Z",
+    "isRead": true
+  },
+  {
+    "id": "zu3qxec9t",
+    "conversationId": "2imo636c2",
+    "senderId": "admin-id",
+    "senderRole": "admin",
+    "content": "Hello",
+    "createdAt": "2026-01-02T21:49:12.475Z",
+    "isRead": true
+  },
+  {
+    "id": "ugyb4yfui",
+    "conversationId": "2imo636c2",
+    "senderId": "m0srhgx7x",
+    "senderRole": "user",
+    "content": "I need help",
+    "createdAt": "2026-01-02T21:49:32.416Z",
+    "isRead": true
+  },
+  {
+    "id": "cvmgsgxvh",
+    "conversationId": "2imo636c2",
+    "senderId": "m0srhgx7x",
+    "senderRole": "user",
+    "content": "Thanks",
+    "createdAt": "2026-01-02T21:51:08.069Z",
+    "isRead": true
+  },
+  {
+    "id": "5e25zqb2r",
+    "conversationId": "2imo636c2",
+    "senderId": "admin-id",
+    "senderRole": "admin",
+    "content": "hi",
+    "createdAt": "2026-01-02T21:51:46.249Z",
+    "isRead": true
+  },
+  {
+    "id": "zw3jzzpzh",
+    "conversationId": "2imo636c2",
+    "senderId": "m0srhgx7x",
+    "senderRole": "user",
+    "content": "Okay",
+    "createdAt": "2026-01-02T21:51:56.990Z",
+    "isRead": true
+  },
+  {
+    "id": "cs45zzxm5",
+    "conversationId": "29s3i0ueh",
+    "senderId": "1u9zn9t32",
+    "senderRole": "user",
+    "content": "",
+    "image": "/uploads/1767391090315_original-8b71857dd9c2137e9523f186a881bdaf.webp",
+    "createdAt": "2026-01-02T21:58:10.504Z",
+    "isRead": true
+  },
+  {
+    "id": "hzwpego40",
+    "conversationId": "29s3i0ueh",
+    "senderId": "1u9zn9t32",
+    "senderRole": "user",
+    "content": "hi",
+    "createdAt": "2026-01-02T22:15:57.988Z",
+    "isRead": true
+  },
+  {
+    "id": "29ysnk2b1",
+    "conversationId": "29s3i0ueh",
+    "senderId": "1u9zn9t32",
+    "senderRole": "user",
+    "content": "hello",
+    "createdAt": "2026-01-02T22:16:29.475Z",
+    "isRead": true
+  },
+  {
+    "id": "4s948z2a6",
+    "conversationId": "29s3i0ueh",
+    "senderId": "admin-id",
+    "senderRole": "admin",
+    "content": "okay",
+    "createdAt": "2026-01-02T22:31:13.608Z",
+    "isRead": true
+  },
+  {
+    "id": "9flj9yhek",
+    "conversationId": "29s3i0ueh",
+    "senderId": "1u9zn9t32",
+    "senderRole": "user",
+    "content": "hi",
+    "createdAt": "2026-01-02T22:34:32.767Z",
+    "isRead": true
+  },
+  {
+    "id": "u1i84orvx",
+    "conversationId": "29s3i0ueh",
+    "senderId": "admin-id",
+    "senderRole": "admin",
+    "content": "hey",
+    "createdAt": "2026-01-02T22:37:17.898Z",
+    "isRead": true
+  },
+  {
+    "id": "tl26vszxv",
+    "conversationId": "29s3i0ueh",
+    "senderId": "admin-id",
+    "senderRole": "admin",
+    "content": "hey",
+    "createdAt": "2026-01-02T22:37:32.221Z",
+    "isRead": true
+  },
+  {
+    "id": "rqjl5hrs2",
+    "conversationId": "29s3i0ueh",
+    "senderId": "1u9zn9t32",
+    "senderRole": "user",
+    "content": "okay",
+    "createdAt": "2026-01-02T22:37:51.795Z",
+    "isRead": true
+  },
+  {
+    "id": "rtb48k59q",
+    "conversationId": "29s3i0ueh",
+    "senderId": "admin-id",
+    "senderRole": "admin",
+    "content": "hi",
+    "createdAt": "2026-01-02T22:41:17.355Z",
+    "isRead": true
+  },
+  {
+    "id": "3p5hjxd3y",
+    "conversationId": "29s3i0ueh",
+    "senderId": "admin-id",
+    "senderRole": "admin",
+    "content": "hi",
+    "createdAt": "2026-01-02T22:43:13.119Z",
+    "isRead": true
+  },
+  {
+    "id": "77f05pxos",
+    "conversationId": "29s3i0ueh",
+    "senderId": "admin-id",
+    "senderRole": "admin",
+    "content": "Hello",
+    "createdAt": "2026-01-02T22:43:32.365Z",
+    "isRead": true
+  },
+  {
+    "id": "lfjcx0e82",
+    "conversationId": "29s3i0ueh",
+    "senderId": "admin-id",
+    "senderRole": "admin",
+    "content": "hi",
+    "createdAt": "2026-01-02T22:44:06.436Z",
+    "isRead": true
+  },
+  {
+    "id": "o2tc1qfqh",
+    "conversationId": "29s3i0ueh",
+    "senderId": "admin-id",
+    "senderRole": "admin",
+    "content": "hi",
+    "createdAt": "2026-01-02T22:46:19.651Z",
+    "isRead": true
+  },
+  {
+    "id": "i0p8yr6zi",
+    "conversationId": "29s3i0ueh",
+    "senderId": "admin-id",
+    "senderRole": "admin",
+    "content": "hi",
+    "createdAt": "2026-01-02T22:46:23.670Z",
+    "isRead": true
+  },
+  {
+    "id": "4xcxggjo5",
+    "conversationId": "29s3i0ueh",
+    "senderId": "admin-id",
+    "senderRole": "admin",
+    "content": "wasup",
+    "createdAt": "2026-01-02T22:51:05.541Z",
+    "isRead": true
+  },
+  {
+    "id": "vq68lknfp",
+    "conversationId": "29s3i0ueh",
+    "senderId": "admin-id",
+    "senderRole": "admin",
+    "content": "hi",
+    "createdAt": "2026-01-02T22:52:35.632Z",
+    "isRead": true
+  },
+  {
+    "id": "hq3kvik4m",
+    "conversationId": "29s3i0ueh",
+    "senderId": "admin-id",
+    "senderRole": "admin",
+    "content": "good",
+    "createdAt": "2026-01-02T22:53:57.071Z",
+    "isRead": true
+  },
+  {
+    "id": "401b5ugfd",
+    "conversationId": "29s3i0ueh",
+    "senderId": "admin-id",
+    "senderRole": "admin",
+    "content": "hi",
+    "createdAt": "2026-01-02T23:44:27.720Z",
+    "isRead": true
+  },
+  {
+    "id": "d61ibdzl0",
+    "conversationId": "7tfs91nf0",
+    "senderId": "1u9zn9t32",
+    "senderRole": "user",
+    "content": "hi",
+    "createdAt": "2026-01-02T23:53:28.688Z",
+    "isRead": true
+  },
+  {
+    "id": "7mbxua8el",
+    "conversationId": "ybjpsh0yr",
+    "senderId": "1u9zn9t32",
+    "senderRole": "user",
+    "content": "hi",
+    "createdAt": "2026-01-03T00:04:26.542Z",
+    "isRead": true
+  },
+  {
+    "id": "1m6bfot5p",
+    "conversationId": "2imo636c2",
+    "senderId": "admin-id",
+    "senderRole": "admin",
+    "content": "hi",
+    "createdAt": "2026-01-03T15:35:14.471Z",
+    "isRead": false
+  },
+  {
+    "id": "n9wypa9ic",
+    "conversationId": "2imo636c2",
+    "senderId": "admin-id",
+    "senderRole": "admin",
+    "content": "hi",
+    "createdAt": "2026-01-03T15:35:17.494Z",
+    "isRead": false
+  }
+]

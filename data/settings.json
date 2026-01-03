@@ -1,0 +1,106 @@
+{
+  "appName": "LuxeStays",
+  "contactEmail": "olaitanadewale@gmail.com",
+  "appLogo": "",
+  "paystackPublicKey": "pk_test_680d5e235339eb90e91c30891100e2d4dc245c10",
+  "paystackSecretKey": "sk_test_e64fd7647215106c72209ac0170b569a2168e4af",
+  "cleaningFee": 5000,
+  "customPages": [],
+  "bannerSettings": {
+    "isEnabled": false,
+    "text": "",
+    "link": "",
+    "backgroundColor": "#000000",
+    "textColor": "#000000"
+  },
+  "footerSettings": {
+    "copyrightText": "© 2026 LuxeStays Apartments. All rights reserved.",
+    "description": "No 1. Apartment in Lagos",
+    "socialLinks": {
+      "facebook": "",
+      "twitter": "",
+      "instagram": "",
+      "linkedin": ""
+    },
+    "columns": []
+  },
+  "emailSettings": {
+    "provider": "smtp",
+    "host": "smtp.gmail.com",
+    "port": 465,
+    "secure": true,
+    "user": "olaitanadewale@gmail.com",
+    "password": "njxn epsy eoet kmqu",
+    "fromName": "LuxeStays Apartments",
+    "fromEmail": "admin@luxestays.com"
+  },
+  "colorPalette": {
+    "brand": "#FF5A5F",
+    "secondary": "#4B5563",
+    "accent": "#FF0000",
+    "background": "#FFFFFF",
+    "text": "#111827"
+  },
+  "welcomeEmail": {
+    "enabled": true,
+    "subject": "Welcome to LuxeStays Apartments",
+    "body": "<p class=\"ql-align-center\"><span style=\"background-color: rgb(255, 255, 255);\">{{logoOrTitle}}</span></p><h2 class=\"ql-align-center\"><span style=\"background-color: rgb(255, 255, 255);\">Welcome&nbsp;Home,&nbsp;{{name}}!</span></h2><p><span style=\"color: rgb(85, 85, 85); background-color: rgb(255, 255, 255);\">We&nbsp;are&nbsp;thrilled&nbsp;to&nbsp;have&nbsp;you&nbsp;join&nbsp;the&nbsp;</span><strong style=\"color: rgb(85, 85, 85); background-color: rgb(255, 255, 255);\">{{appName}}</strong><span style=\"color: rgb(85, 85, 85); background-color: rgb(255, 255, 255);\">&nbsp;community.&nbsp;You&#39;ve&nbsp;just&nbsp;taken&nbsp;the&nbsp;first&nbsp;step&nbsp;towards&nbsp;experiencing&nbsp;luxury&nbsp;living&nbsp;at&nbsp;its&nbsp;finest.</span></p><p><span style=\"color: rgb(85, 85, 85); background-color: rgb(255, 255, 255);\">Whether&nbsp;you&#39;re&nbsp;looking&nbsp;for&nbsp;a&nbsp;cozy&nbsp;weekend&nbsp;getaway&nbsp;or&nbsp;a&nbsp;long-term&nbsp;premium&nbsp;residence,&nbsp;we&nbsp;have&nbsp;curated&nbsp;the&nbsp;perfect&nbsp;spaces&nbsp;just&nbsp;for&nbsp;you.&nbsp;Our&nbsp;apartments&nbsp;offer&nbsp;the&nbsp;perfect&nbsp;blend&nbsp;of&nbsp;comfort,&nbsp;style,&nbsp;and&nbsp;convenience.</span></p><p class=\"ql-align-center\"><strong style=\"color: rgb(255, 255, 255); background-color: rgb(255, 255, 255);\"><a href=\"{{siteUrl}}/apartments\" rel=\"noopener noreferrer\" target=\"_blank\">Browse&nbsp;Apartments</a></strong></p><p class=\"ql-align-center\"><span style=\"color: rgb(136, 136, 136); background-color: rgb(255, 255, 255);\">Need&nbsp;help?&nbsp;Our&nbsp;support&nbsp;team&nbsp;is&nbsp;always&nbsp;here&nbsp;for&nbsp;you.&nbsp;Just&nbsp;reply&nbsp;to&nbsp;this&nbsp;email.</span></p><p class=\"ql-align-center\"></p><p class=\"ql-align-center\"></p><p class=\"ql-align-center\"></p><p class=\"ql-align-center\"></p><p class=\"ql-align-center\"></p><p class=\"ql-align-center\"></p><p class=\"ql-align-center\"></p><p class=\"ql-align-center\"><span style=\"background-color: rgb(248, 249, 250); color: rgb(136, 136, 136);\">©&nbsp;{{year}}&nbsp;{{appName}}.&nbsp;All&nbsp;rights&nbsp;reserved.</span></p><p class=\"ql-align-center\"><span style=\"background-color: rgb(248, 249, 250); color: rgb(136, 136, 136);\">{{address}}</span></p><p class=\"ql-align-center\"><span style=\"background-color: rgb(248, 249, 250); color: rgb(136, 136, 136);\">{{socialLinks}}</span></p><p class=\"ql-align-center\"><u style=\"color: rgb(136, 136, 136); background-color: rgb(248, 249, 250);\"><a href=\"{{siteUrl}}/privacy\" rel=\"noopener noreferrer\" target=\"_blank\">Privacy&nbsp;Policy</a><a href=\"{{siteUrl}}/terms\" rel=\"noopener noreferrer\" target=\"_blank\">Terms&nbsp;of&nbsp;Service</a></u></p>"
+  },
+  "contactPage": {
+    "title": "Get in Touch",
+    "description": "Have questions about our apartments? We're here to help you find the perfect place for your stay.",
+    "email": "admin@luxestays.com",
+    "supportEmail": "support@luxestays.com",
+    "phone1": "+234 800 123 4567",
+    "phone2": "+234 800 987 6543",
+    "addressLine1": "123 Victoria Island,",
+    "addressLine2": "Lagos, Nigeria"
+  },
+  "sidebarAdvert": {
+    "enabled": true,
+    "image": "/uploads/1767420780360_Advertise-here.jpg",
+    "link": "",
+    "altText": "Summer Sale 50% Off"
+  },
+  "aboutPage": {
+    "title": "About LuxeStays",
+    "subtitle": "Experience luxury living in the heart of the city ",
+    "heroImage": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=2070&auto=format&fit=crop",
+    "storyTitle": "Our Story",
+    "storyContent": "Founded with a vision to redefine luxury accommodation, CityDwell Apartments has been serving guests from around the world. We believe in providing not just a place to sleep, but an experience to remember. Our carefully curated apartments offer the perfect blend of comfort, style, and convenience.",
+    "storyImage": "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop",
+    "stats": [
+      {
+        "label": "Years of Experience",
+        "value": "10+"
+      },
+      {
+        "label": "Apartments",
+        "value": "50+"
+      },
+      {
+        "label": "Happy Guests",
+        "value": "10k+"
+      },
+      {
+        "label": "Cities",
+        "value": "5"
+      }
+    ],
+    "missionTitle": "",
+    "missionContent": "",
+    "visionTitle": "",
+    "visionContent": "",
+    "objectivesTitle": "",
+    "objectivesContent": ""
+  },
+  "seoSettings": {
+    "metaTitle": "LuxeStays - Premium Apartment Booking",
+    "metaDescription": "Book the finest apartments in Lagos.",
+    "metaKeywords": "apartments, booking, luxury, lagos, accommodation",
+    "ogImage": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop",
+    "twitterHandle": "",
+    "favicon": "/uploads/1767433219449_unnamed.png"
+  },
+  "address": "Lagos"
+}

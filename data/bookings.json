@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1767453828728",
+    "apartmentId": "5",
+    "userId": "olaitanadewale@gmail.com",
+    "startDate": "2026-01-03T00:00:00.000Z",
+    "endDate": "2026-01-04T00:00:00.000Z",
+    "totalPrice": 355000,
+    "paymentReference": "T915625546893168",
+    "status": "confirmed",
+    "discountAmount": 0,
+    "createdAt": "2026-01-03T15:23:48.729Z"
+  },
+  {
+    "id": "1767459229242",
+    "apartmentId": "7",
+    "userId": "test@gmail.com",
+    "startDate": "2026-01-03T00:00:00.000Z",
+    "endDate": "2026-01-05T00:00:00.000Z",
+    "totalPrice": 245000,
+    "paymentReference": "T610204362234676",
+    "status": "confirmed",
+    "discountAmount": 0,
+    "createdAt": "2026-01-03T16:53:49.242Z"
+  },
+  {
+    "id": "1767461562187",
+    "apartmentId": "8",
+    "userId": "polymerasemedia@gmail.com",
+    "startDate": "2026-01-03",
+    "endDate": "2026-01-06",
+    "totalPrice": 290000,
+    "paymentReference": "T667245372359055",
+    "status": "confirmed",
+    "discountAmount": 0,
+    "createdAt": "2026-01-03T17:32:42.187Z"
+  }
+]

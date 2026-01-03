@@ -1,0 +1,31 @@
+[
+  {
+    "id": "1",
+    "name": "Penthouse",
+    "icon": "Warehouse"
+  },
+  {
+    "id": "2",
+    "name": "Studio",
+    "icon": "Landmark"
+  },
+  {
+    "id": "3",
+    "name": "Family"
+  },
+  {
+    "id": "4",
+    "name": "Luxury",
+    "icon": "Hotel"
+  },
+  {
+    "id": "1767353212240",
+    "name": "Flat",
+    "icon": "Building2"
+  },
+  {
+    "id": "6",
+    "name": "Business",
+    "icon": "Building2"
+  }
+]

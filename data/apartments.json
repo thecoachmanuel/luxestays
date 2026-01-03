@@ -1,0 +1,301 @@
+[
+  {
+    "id": "1",
+    "title": "Oceanview Apartment",
+    "description": "Experience the ultimate luxury in this stunning oceanview apartment. Featuring modern amenities, spacious rooms, and breathtaking views.",
+    "price": 150000,
+    "location": "Victoria Island, Lagos",
+    "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80"
+    ],
+    "bedrooms": 5,
+    "bathrooms": 2,
+    "amenities": [
+      "WiFi",
+      "Pool",
+      "Gym",
+      "Parking",
+      "AC"
+    ],
+    "rating": 5,
+    "category": "Penthouse",
+    "currentStatus": "available",
+    "videoUrl": "https://youtu.be/F5PYkN8MPJ8?si=lJOO2v91I__OnOuU"
+  },
+  {
+    "id": "2",
+    "title": "Cozy Studio in Ikeja",
+    "description": "Perfect for business travelers, this cozy studio offers comfort and convenience in the heart of Ikeja.",
+    "price": 45000,
+    "location": "Ikeja, Lagos",
+    "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80"
+    ],
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "amenities": [
+      "WiFi",
+      "Work Space",
+      "AC"
+    ],
+    "rating": 5,
+    "category": "Studio",
+    "currentStatus": "available",
+    "videoUrl": "https://youtu.be/F5PYkN8MPJ8?si=lJOO2v91I__OnOuU"
+  },
+  {
+    "id": "3",
+    "title": "Modern 2-Bedroom Flat",
+    "description": "A stylish and modern flat with all the comforts of home. Great for families or small groups.",
+    "price": 85000,
+    "location": "Lekki Phase 1, Lagos",
+    "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80"
+    ],
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "amenities": [
+      "WiFi",
+      "Kitchen",
+      "Security",
+      "AC"
+    ],
+    "rating": 5,
+    "category": "Family",
+    "currentStatus": "available"
+  },
+  {
+    "id": "4",
+    "title": "Penthouse Suite",
+    "description": "Top floor penthouse with panoramic views of the city. Exclusive access to rooftop lounge.",
+    "price": 250000,
+    "location": "Ikoyi, Lagos",
+    "image": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80"
+    ],
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "amenities": [
+      "WiFi",
+      "Pool",
+      "Gym",
+      "Concierge",
+      "AC",
+      "Rooftop"
+    ],
+    "rating": 4.9,
+    "category": "Luxury",
+    "currentStatus": "available"
+  },
+  {
+    "id": "5",
+    "title": "Seaside Villa",
+    "description": "Escape to paradise in this exclusive seaside villa at Eko Atlantic. Direct beach access and private infinity pool.",
+    "price": 350000,
+    "location": "Eko Atlantic, Lagos",
+    "image": "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1540541338287-41700207dee6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80"
+    ],
+    "bedrooms": 6,
+    "bathrooms": 6,
+    "amenities": [
+      "WiFi",
+      "Private Pool",
+      "Beach Access",
+      "Chef Service",
+      "AC",
+      "Cinema Room"
+    ],
+    "rating": 5,
+    "category": "Luxury",
+    "currentStatus": "booked",
+    "nextAvailableDate": "2026-01-04T00:00:00.000Z"
+  },
+  {
+    "id": "6",
+    "title": "Downtown Loft",
+    "description": "Industrial-chic loft in the heart of the business district. High ceilings, exposed brick, and modern art.",
+    "price": 60000,
+    "location": "Marina, Lagos",
+    "image": "https://images.unsplash.com/photo-1505873242700-f289a29e1e0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1505873242700-f289a29e1e0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80"
+    ],
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "amenities": [
+      "WiFi",
+      "Smart Home",
+      "Work Desk",
+      "AC",
+      "Coffee Machine"
+    ],
+    "rating": 4.7,
+    "category": "Studio",
+    "currentStatus": "available"
+  },
+  {
+    "id": "7",
+    "title": "Garden Residence",
+    "description": "Serene 3-bedroom apartment with a private garden in the quiet Ikeja GRA neighborhood.",
+    "price": 120000,
+    "location": "Ikeja GRA, Lagos",
+    "image": "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80"
+    ],
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "amenities": [
+      "WiFi",
+      "Private Garden",
+      "Security",
+      "AC",
+      "Playground"
+    ],
+    "rating": 4.8,
+    "category": "Family",
+    "currentStatus": "booked",
+    "nextAvailableDate": "2026-01-05T00:00:00.000Z"
+  },
+  {
+    "id": "8",
+    "title": "Executive Suite",
+    "description": "Tailored for the modern professional. Close to major corporate HQs in VI with premium services.",
+    "price": 95000,
+    "location": "Victoria Island, Lagos",
+    "image": "https://images.unsplash.com/photo-1486304873000-235643847519?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1486304873000-235643847519?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80"
+    ],
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "amenities": [
+      "WiFi",
+      "Business Center",
+      "Gym",
+      "AC",
+      "Housekeeping"
+    ],
+    "rating": 4.5,
+    "category": "Business",
+    "currentStatus": "available"
+  },
+  {
+    "id": "9",
+    "title": "City Center Flat",
+    "description": "Conveniently located flat in Yaba, close to tech hubs and universities. Great for young professionals.",
+    "price": 40000,
+    "location": "Yaba, Lagos",
+    "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80"
+    ],
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "amenities": [
+      "WiFi",
+      "Security",
+      "AC",
+      "Kitchen"
+    ],
+    "rating": 4.2,
+    "category": "Flat",
+    "currentStatus": "available"
+  },
+  {
+    "id": "10",
+    "title": "Royal Suite",
+    "description": "The pinnacle of luxury in Banana Island. Expansive spaces, premium finishes, and unmatched privacy.",
+    "price": 500000,
+    "location": "Banana Island, Lagos",
+    "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80"
+    ],
+    "bedrooms": 5,
+    "bathrooms": 6,
+    "amenities": [
+      "WiFi",
+      "Private Pool",
+      "Gym",
+      "Concierge",
+      "AC",
+      "Smart Home"
+    ],
+    "rating": 5,
+    "category": "Luxury",
+    "currentStatus": "available"
+  },
+  {
+    "id": "11",
+    "title": "Gated Family House",
+    "description": "Safe and spacious family home in a secure estate in Magodo. Perfect for families with children.",
+    "price": 75000,
+    "location": "Magodo, Lagos",
+    "image": "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80"
+    ],
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "amenities": [
+      "WiFi",
+      "Parking",
+      "Security",
+      "AC",
+      "Garden"
+    ],
+    "rating": 4.6,
+    "category": "Family",
+    "currentStatus": "available"
+  },
+  {
+    "id": "12",
+    "title": "Artist Loft",
+    "description": "Creative and inspiring space in Surulere. High ceilings and plenty of natural light.",
+    "price": 35000,
+    "location": "Surulere, Lagos",
+    "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80"
+    ],
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "amenities": [
+      "WiFi",
+      "Work Space",
+      "AC",
+      "Kitchen"
+    ],
+    "rating": 4.4,
+    "category": "Studio",
+    "currentStatus": "available"
+  }
+]
