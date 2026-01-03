@@ -514,7 +514,7 @@ export default function SettingsPage() {
                                         control={control}
                                         render={({ field }) => (
                                             <RichTextEditor
-                                                value={field.value}
+                                                value={field.value || ""}
                                                 onChange={field.onChange}
                                                 onImageUpload={handleEditorImageUpload}
                                                 className="min-h-[400px] bg-white text-black"

@@ -119,7 +119,7 @@ export function WhyChooseUsForm({ initialItems }: { initialItems: WhyChooseUsIte
                 <div className="md:col-span-2">
                     <label className="block text-sm font-medium mb-1 text-[var(--foreground)]">Color Theme</label>
                     <select
-                        value={getThemeKey(item.color, item.bgColor)}
+                        value={getThemeKey(item.color || "", item.bgColor || "")}
                         onChange={(e) => handleThemeChange(item.id, e.target.value as keyof typeof COLOR_THEMES)}
                         className="w-full border border-[var(--secondary)]/20 rounded p-2 bg-[var(--background)] text-[var(--foreground)]"
                     >

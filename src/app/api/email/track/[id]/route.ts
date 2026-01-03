@@ -3,9 +3,10 @@ import { updateCampaignRecipientStatus } from "@/lib/db"
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const trackingId = params.id
+  const { id } = await params
+  const trackingId = id
   console.log(`[Tracking] Received request for ID: ${trackingId}`)
   
   if (trackingId) {
