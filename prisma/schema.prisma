@@ -1,0 +1,265 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Enums
+
+enum Role {
+  admin
+  user
+}
+
+enum BookingStatus {
+  pending
+  confirmed
+  cancelled
+}
+
+enum DiscountType {
+  percentage
+  flat
+}
+
+enum ContactMessageStatus {
+  new
+  read
+  replied
+}
+
+enum ConversationStatus {
+  active
+  closed
+  archived
+}
+
+enum SenderRole {
+  user
+  admin
+}
+
+enum EmailStatus {
+  sent
+  opened
+}
+
+// Models
+
+model User {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String   @unique
+  phone     String?
+  password  String?
+  image     String?
+  role      Role     @default(user)
+  createdAt DateTime @default(now())
+
+  // Relations
+  bookings      Booking[]
+  reviews       Review[]
+  favorites     Favorite[]
+  conversations Conversation[]
+}
+
+model Apartment {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  price       Float
+  location    String
+  image       String
+  images      String[]
+  bedrooms    Int
+  bathrooms   Int
+  amenities   String[]
+  rating      Float    @default(0)
+  category    String
+  videoUrl    String?
+  
+  // Relations
+  bookings  Booking[]
+  reviews   Review[]
+  favorites Favorite[]
+}
+
+model Booking {
+  id               String        @id @default(cuid())
+  apartmentId      String
+  userId           String
+  startDate        DateTime
+  endDate          DateTime
+  totalPrice       Float
+  status           BookingStatus @default(pending)
+  paymentReference String?
+  guestName        String
+  guestEmail       String
+  guestPhone       String
+  couponCode       String?
+  discountAmount   Float?
+  createdAt        DateTime      @default(now())
+
+  // Relations
+  apartment Apartment @relation(fields: [apartmentId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Review {
+  id          String   @id @default(cuid())
+  apartmentId String
+  userId      String
+  userName    String
+  rating      Int
+  comment     String
+  createdAt   DateTime @default(now())
+
+  // Relations
+  apartment Apartment @relation(fields: [apartmentId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [email], onDelete: Cascade) // Linking by email since schema usually expects unique foreign key. If user ID is consistent, better use ID.
+  // Note: Original type had userId, but in practice reviews often just store the user's ID string.
+  // Let's assume we can link to User.id if existing data allows. If existing data has email in userId field, we might need migration.
+  // The types say userId: string. Let's assume it maps to User.id.
+}
+
+model Favorite {
+  id          String   @id @default(cuid()) // Added ID for Prisma, though composite key (userId, apartmentId) is possible
+  userId      String
+  apartmentId String
+  createdAt   DateTime @default(now())
+
+  // Relations
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  apartment Apartment @relation(fields: [apartmentId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, apartmentId])
+}
+
+model Category {
+  id   String  @id @default(cuid())
+  name String
+  icon String?
+}
+
+model Coupon {
+  id             String       @id @default(cuid())
+  code           String       @unique
+  discountType   DiscountType
+  discountValue  Float
+  expirationDate DateTime
+  usedCount      Int          @default(0)
+}
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String               @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  message   String
+  createdAt DateTime             @default(now())
+  read      Boolean              @default(false)
+  status    ContactMessageStatus @default(new)
+}
+
+model Conversation {
+  id            String             @id @default(cuid())
+  userId        String // Can be guest ID or User ID
+  userEmail     String?
+  userName      String?
+  lastMessageAt DateTime           @default(now())
+  status        ConversationStatus @default(active)
+  unreadCount   Int                @default(0)
+  archivedAt    DateTime?
+  userClearedAt DateTime?
+
+  // Relations
+  messages Message[]
+  user     User?     @relation(fields: [userId], references: [id], onDelete: Cascade) // Optional because of guest users
+}
+
+model Message {
+  id             String     @id @default(cuid())
+  senderId       String?
+  content        String
+  senderRole     SenderRole
+  createdAt      DateTime   @default(now())
+  conversationId String
+  isRead         Boolean    @default(false)
+  image          String?
+
+  // Relations
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+}
+
+model WhyChooseUsItem {
+  id          String  @id @default(cuid())
+  title       String
+  description String
+  icon        String
+  bgColor     String?
+  color       String?
+}
+
+// App Settings (Singleton-ish, usually just one row)
+model AppSettings {
+  id              String   @id @default("default")
+  siteName        String   @default("Apartment Booking")
+  siteDescription String   @default("Best apartments")
+  contactEmail    String   @default("")
+  contactPhone    String   @default("")
+  address         String   @default("")
+  currency        String   @default("USD")
+  logo            String   @default("")
+  
+  // JSON fields for nested settings
+  banner          Json?
+  footer          Json?
+  customPages     Json?
+  aboutPage       Json?
+  contactPage     Json?
+  emailSettings   Json?
+  colorPalette    Json?
+  welcomeEmail    Json?
+  sidebarAdvert   Json?
+  seoSettings     Json?
+  
+  paystackPublicKey String?
+  paystackSecretKey String?
+  cleaningFee       Float?
+}
+
+model EmailCampaign {
+  id          String   @id @default(cuid())
+  subject     String
+  message     String
+  sentAt      DateTime @default(now())
+  totalSent   Int      @default(0)
+  totalOpened Int      @default(0)
+  
+  // Relations
+  recipients EmailRecipient[]
+}
+
+model EmailRecipient {
+  id              String      @id @default(cuid())
+  emailCampaignId String
+  email           String
+  trackingId      String      @unique
+  status          EmailStatus @default(sent)
+  sentAt          DateTime    @default(now())
+  openedAt        DateTime?
+
+  campaign EmailCampaign @relation(fields: [emailCampaignId], references: [id], onDelete: Cascade)
+}
