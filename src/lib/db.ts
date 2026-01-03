@@ -606,7 +606,7 @@ export async function addSubscriber(email: string): Promise<Subscriber> {
   const newSubscriber: Subscriber = {
     id: Math.random().toString(36).substr(2, 9),
     email,
-    subscribedAt: new Date().toISOString()
+    createdAt: new Date().toISOString()
   };
 
   subscribers.push(newSubscriber);

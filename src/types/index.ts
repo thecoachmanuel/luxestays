@@ -241,6 +241,16 @@ export interface ContactMessage {
   message: string;
   createdAt: string;
   read: boolean;
+  status?: 'new' | 'read' | 'replied';
+}
+
+export interface WhyChooseUsItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  bgColor?: string;
+  color?: string;
 }
 
 export interface Message {
