@@ -91,6 +91,10 @@ async function main() {
                 totalPrice: booking.totalPrice,
                 status: booking.status,
                 createdAt: new Date(booking.createdAt || Date.now()),
+                // Provide fallback values for required fields missing in JSON
+                guestName: userExists.name || 'Unknown Guest',
+                guestEmail: userExists.email || 'unknown@example.com',
+                guestPhone: userExists.phone || '000-000-0000',
             }
         })
     }
@@ -109,6 +113,7 @@ async function main() {
                   id: review.id,
                   apartmentId: review.apartmentId,
                   userId: review.userId,
+                  userName: userExists.name || 'Anonymous', // Fallback for userName
                   rating: review.rating,
                   comment: review.comment,
                   createdAt: new Date(review.createdAt || Date.now()),

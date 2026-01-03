@@ -122,7 +122,7 @@ model Review {
 
   // Relations
   apartment Apartment @relation(fields: [apartmentId], references: [id], onDelete: Cascade)
-  user      User      @relation(fields: [userId], references: [email], onDelete: Cascade) // Linking by email since schema usually expects unique foreign key. If user ID is consistent, better use ID.
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   // Note: Original type had userId, but in practice reviews often just store the user's ID string.
   // Let's assume we can link to User.id if existing data allows. If existing data has email in userId field, we might need migration.
   // The types say userId: string. Let's assume it maps to User.id.

@@ -184,6 +184,7 @@ export interface SeoSettings {
 }
 
 export interface AppSettings {
+  id?: string; // Add id to interface
   siteName: string; // Used in UI
   appName?: string; // Used in db.ts fallback
   siteDescription: string;
@@ -225,6 +226,7 @@ export interface Subscriber {
 }
 
 export interface Coupon {
+  id?: string;
   code: string;
   discountType: 'percentage' | 'flat';
   discountValue: number;

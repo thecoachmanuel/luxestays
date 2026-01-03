@@ -1067,7 +1067,7 @@ export async function updateCampaignRecipientStatus(trackingId: string): Promise
               }
           }),
           prisma.emailCampaign.update({
-              where: { id: recipient.campaignId },
+              where: { id: recipient.emailCampaignId },
               data: {
                   totalOpened: { increment: 1 }
               }
