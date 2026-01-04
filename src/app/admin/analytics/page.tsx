@@ -1,4 +1,4 @@
-import { getAnalyticsData } from '@/lib/db'
+import { getAnalyticsData, getSettings } from '@/lib/db'
 import { AnalyticsCharts } from './charts'
 import { AnalyticsControls } from './controls'
 
@@ -23,7 +23,12 @@ export default async function AnalyticsPage({ searchParams }: { searchParams: Pr
     options = { start: new Date(startParam), end: new Date(endParam) }
   }
 
-  const data = await getAnalyticsData(options)
+  const [data, settings] = await Promise.all([
+    getAnalyticsData(options),
+    getSettings()
+  ])
+
+  const appName = settings.appName || settings.siteName || "LuxeStays"
 
   return (
     <div className="space-y-8">
@@ -31,7 +36,7 @@ export default async function AnalyticsPage({ searchParams }: { searchParams: Pr
         <h1 className="text-3xl font-bold">Analytics</h1>
       </div>
 
-      <AnalyticsControls data={data} />
+      <AnalyticsControls data={data} appName={appName} />
       <AnalyticsCharts data={data} />
     </div>
   )
