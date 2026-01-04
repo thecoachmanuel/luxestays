@@ -2,7 +2,8 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, Users, List, Settings, Mail, PlusCircle, CalendarCheck, Tag, MessageSquare } from "lucide-react"
+import { useEffect, useState } from "react"
+import { LayoutDashboard, Users, List, Settings, Mail, PlusCircle, CalendarCheck, Tag, MessageSquare, Bell } from "lucide-react"
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
@@ -61,8 +62,44 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
       {/* Main Content */}
       <main className="flex-1 p-4 md:p-8 overflow-x-hidden">
+        <AdminHeaderNotifications />
         {children}
       </main>
+    </div>
+  )
+}
+
+function AdminHeaderNotifications() {
+  const [count, setCount] = useState<number>(0)
+
+  useEffect(() => {
+    let mounted = true
+    const fetchCount = async () => {
+      try {
+        const res = await fetch('/api/admin/notifications', { cache: 'no-store' })
+        if (!res.ok) return
+        const data = await res.json()
+        if (mounted && typeof data.count === 'number') setCount(data.count)
+      } catch (_) {}
+    }
+    fetchCount()
+    const interval = setInterval(fetchCount, 10000)
+    return () => {
+      mounted = false
+      clearInterval(interval)
+    }
+  }, [])
+
+  return (
+    <div className="flex items-center justify-end mb-4">
+      <button className="relative p-2 rounded-full hover:bg-[var(--secondary)]/10 transition-colors" aria-label="Notifications">
+        <Bell className="h-6 w-6 text-[var(--foreground)]" />
+        {count > 0 && (
+          <span className="absolute -top-1 -right-1 h-5 min-w-[1.25rem] px-1 rounded-full bg-[var(--accent)] text-white text-xs flex items-center justify-center">
+            {count}
+          </span>
+        )}
+      </button>
     </div>
   )
 }

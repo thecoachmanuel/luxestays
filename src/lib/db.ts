@@ -190,6 +190,17 @@ export async function updateUser(updatedUser: User): Promise<void> {
   });
 }
 
+export async function upsertUserContact(userId: string, name?: string, phone?: string): Promise<void> {
+  const data: any = {}
+  if (name) data.name = name
+  if (phone) data.phone = phone
+  if (Object.keys(data).length === 0) return
+  await prisma.user.update({
+    where: { id: userId },
+    data
+  })
+}
+
 export async function deleteUser(id: string): Promise<void> {
   await prisma.user.delete({
       where: { id }
@@ -246,8 +257,8 @@ const DEFAULT_SETTINGS: AppSettings = {
       contactPage: {
         title: "Get in Touch",
         description: "Have questions about our apartments? We're here to help you find the perfect place for your stay.",
-        email: "hello@citydwell.com",
-        supportEmail: "support@citydwell.com",
+        email: "hello@luxestays.com",
+        supportEmail: "support@luxestays.com",
         phone1: "+234 800 123 4567",
         phone2: "+234 800 987 6543",
         addressLine1: "123 Victoria Island,",
@@ -326,6 +337,16 @@ export async function getSettings(): Promise<AppSettings> {
     console.error("Error fetching settings:", error);
     return DEFAULT_SETTINGS;
   }
+}
+
+export async function getAdminNotificationCount(): Promise<number> {
+  const [pendingBookings, unreadConversations, newMessages, newUsers] = await Promise.all([
+    prisma.booking.count({ where: { status: 'pending' } }),
+    prisma.conversation.count({ where: { unreadCount: { gt: 0 } } }),
+    prisma.contactMessage.count({ where: { status: 'new' } }),
+    prisma.user.count({ where: { createdAt: { gte: new Date(Date.now() - 24 * 60 * 60 * 1000) } } })
+  ])
+  return pendingBookings + unreadConversations + newMessages + newUsers
 }
 
 export async function updateSettings(newSettings: Partial<AppSettings>): Promise<void> {

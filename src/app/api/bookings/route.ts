@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { addBooking, checkApartmentAvailability, getApartmentById } from "@/lib/db"
+import { addBooking, checkApartmentAvailability, getApartmentById, upsertUserContact } from "@/lib/db"
 import { Booking } from "@/types"
 import { sendBookingInvoiceEmail } from "@/lib/email"
 
@@ -35,6 +35,10 @@ export async function POST(request: Request) {
     }
 
     await addBooking(newBooking)
+
+    try {
+      await upsertUserContact(newBooking.userId, newBooking.guestName, newBooking.guestPhone)
+    } catch {}
 
     // Send invoice email
     try {
