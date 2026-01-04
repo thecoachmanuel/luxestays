@@ -10,6 +10,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   const links = [
     { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+    { href: "/admin/notifications", label: "Notifications", icon: Bell },
     { href: "/admin/listings", label: "Manage Listings", icon: List },
     { href: "/admin/bookings", label: "Manage Bookings", icon: CalendarCheck },
     { href: "/admin/coupons", label: "Manage Coupons", icon: Tag },
