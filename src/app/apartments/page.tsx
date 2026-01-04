@@ -21,7 +21,9 @@ export default async function ApartmentsPage({ searchParams }: PageProps) {
   let apartments = allApartments
 
   if (category) {
-    apartments = apartments.filter(a => a.category?.toLowerCase() === category.toLowerCase())
+    const normalize = (s: string) => s.trim().toLowerCase()
+    const selected = normalize(category)
+    apartments = apartments.filter(a => a.category ? normalize(a.category) === selected : false)
   }
 
   if (query) {
@@ -56,7 +58,7 @@ export default async function ApartmentsPage({ searchParams }: PageProps) {
                 <Link 
                     key={cat.id} 
                     href={`/apartments?category=${cat.name}`}
-                    className={`shrink-0 flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-medium transition-all border ${category === cat.name ? 'bg-[var(--brand)] text-white border-[var(--brand)]' : 'bg-[var(--background)] text-[var(--secondary)] border-[var(--secondary)]/20 hover:border-[var(--brand)]'}`}
+                    className={`shrink-0 flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-medium transition-all border ${category && category.trim().toLowerCase() === (cat.name || '').trim().toLowerCase() ? 'bg-[var(--brand)] text-white border-[var(--brand)]' : 'bg-[var(--background)] text-[var(--secondary)] border-[var(--secondary)]/20 hover:border-[var(--brand)]'}`}
                 >
                     <Icon className="h-4 w-4" />
                     <span>{cat.name}</span>
