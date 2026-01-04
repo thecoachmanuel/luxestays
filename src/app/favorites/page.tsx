@@ -7,7 +7,7 @@ import { Apartment } from "@/types"
 export default async function FavoritesPage() {
   const session = await auth()
   
-  if (!session?.user?.email) {
+  if (!session?.user?.id) {
     return (
       <div className="container mx-auto py-20 px-4 xl:px-20 text-center">
         <div className="mx-auto max-w-md rounded-2xl border border-[var(--secondary)]/20 bg-[var(--background)] p-10">
@@ -24,7 +24,7 @@ export default async function FavoritesPage() {
     )
   }
 
-  const favorites = await getFavorites(session.user.email)
+  const favorites = await getFavorites(session.user.id)
   const apartments = await Promise.all(
     favorites.map(f => getApartmentById(f.apartmentId))
   )
@@ -56,7 +56,7 @@ export default async function FavoritesPage() {
                key={apt.id} 
                apartment={apt} 
                initialIsFavorite={true}
-               currentUserId={session.user?.email || ''}
+               currentUserId={session.user?.id || ''}
                isAdmin={(session.user as any)?.role === 'admin'}
              />
           ))}

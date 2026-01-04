@@ -22,7 +22,7 @@ export default async function ApartmentPage({ params }: PageProps) {
     const reviews = await getReviewsByApartmentId(id)
     const session = await auth()
     const settings = await getSettings()
-    const isFavorited = session?.user?.email ? await isFavorite(session.user.email, id) : false
+    const isFavorited = session?.user?.id ? await isFavorite(session.user.id, id) : false
 
     if (!apartment) {
         notFound()
@@ -38,7 +38,13 @@ export default async function ApartmentPage({ params }: PageProps) {
                         <MapPin className="h-4 w-4" />
                         {apartment.location}
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 items-center">
+                         <a
+                           href="#book-now"
+                           className="sm:hidden inline-flex items-center justify-center rounded-full px-3 py-1.5 text-sm font-medium bg-[var(--brand)] text-white hover:opacity-90 transition-all"
+                         >
+                           Book Now
+                         </a>
                          <ShareButton 
                             title={apartment.title}
                             description={apartment.description}
@@ -47,7 +53,7 @@ export default async function ApartmentPage({ params }: PageProps) {
                          <FavoriteButton 
                            apartmentId={apartment.id}
                            initialIsFavorite={isFavorited}
-                           currentUserId={session?.user?.email || undefined}
+                           currentUserId={session?.user?.id || undefined}
                            variant="button"
                          />
                     </div>

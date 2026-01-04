@@ -1,6 +1,6 @@
 
 import { AppSettings, Booking, Apartment } from '@/types';
-import { getSettings } from './db';
+import { getSettings, getUserById } from './db';
 import nodemailer from 'nodemailer';
 import { formatPrice } from './utils';
 import { format } from 'date-fns';
@@ -15,7 +15,11 @@ export async function sendBookingInvoiceEmail(booking: Booking, apartment: Apart
   }
 
   const subject = `Booking Confirmation & Invoice - ${booking.id}`;
-  const to = booking.userId; // Assuming userId is email
+  let to = booking.guestEmail;
+  if (!to) {
+    const user = await getUserById(booking.userId);
+    to = user?.email || booking.userId;
+  }
   
   const startDate = format(new Date(booking.startDate), 'MMM dd, yyyy');
   const endDate = format(new Date(booking.endDate), 'MMM dd, yyyy');

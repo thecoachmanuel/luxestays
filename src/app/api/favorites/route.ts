@@ -4,13 +4,13 @@ import { addFavorite, removeFavorite, isFavorite, getFavorites, getApartmentById
 
 export async function POST(req: Request) {
   const session = await auth()
-  if (!session || !session.user || !session.user.email) {
+  if (!session || !session.user || !session.user.id) {
     return new NextResponse("Unauthorized", { status: 401 })
   }
 
   try {
     const { apartmentId } = await req.json()
-    const userId = session.user.email
+    const userId = session.user.id
 
     const exists = await isFavorite(userId, apartmentId)
 
@@ -28,7 +28,7 @@ export async function POST(req: Request) {
 
 export async function GET(req: Request) {
   const session = await auth()
-  if (!session || !session.user || !session.user.email) {
+  if (!session || !session.user || !session.user.id) {
     return new NextResponse("Unauthorized", { status: 401 })
   }
 
@@ -37,13 +37,13 @@ export async function GET(req: Request) {
 
   // If checking specific apartment status
   if (apartmentId) {
-    const status = await isFavorite(session.user.email, apartmentId)
+    const status = await isFavorite(session.user.id, apartmentId)
     return NextResponse.json({ isFavorite: status })
   }
 
   // List all favorites (full apartment details)
   try {
-    const favorites = await getFavorites(session.user.email)
+    const favorites = await getFavorites(session.user.id)
     const apartments = await Promise.all(
       favorites.map(async (fav) => {
         return await getApartmentById(fav.apartmentId)

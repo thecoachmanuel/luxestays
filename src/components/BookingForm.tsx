@@ -63,6 +63,7 @@ export function BookingForm({ apartment, paystackPublicKey, rating, reviewCount,
   }
 
   const [days, setDays] = useState(0)
+  const [dateError, setDateError] = useState("")
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -78,9 +79,11 @@ export function BookingForm({ apartment, paystackPublicKey, rating, reviewCount,
 
       const d = differenceInDays(end, start)
       setDays(d > 0 ? d : 0)
+      setDateError(d > 0 ? "" : "Check-out must be after check-in")
     } else {
       setDays(0)
       setIsAvailable(true)
+      setDateError("")
     }
   }, [startDate, endDate, bookings])
 
@@ -135,7 +138,8 @@ export function BookingForm({ apartment, paystackPublicKey, rating, reviewCount,
 
   const baseAmount = days * apartment.price
   const finalAmount = Math.max(0, baseAmount + cleaningFee - discountAmount)
-  const amount = finalAmount * 100 // Paystack expects amount in kobo
+  const validPhone = !!phone && phone.length >= 10 && phone.length <= 15
+  const amount = (days > 0 ? finalAmount : 0) * 100
 
   const handleSuccess = async (reference: any) => {
     try {
@@ -148,7 +152,10 @@ export function BookingForm({ apartment, paystackPublicKey, rating, reviewCount,
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 apartmentId: apartment.id,
-                userId: session?.user?.email, // Using email as ID
+                userId: session?.user?.id,
+                guestName: session?.user?.name || "",
+                guestEmail: session?.user?.email || "",
+                guestPhone: phone,
                 startDate,
                 endDate,
                 totalPrice: finalAmount,
@@ -216,7 +223,8 @@ export function BookingForm({ apartment, paystackPublicKey, rating, reviewCount,
   }
 
   return (
-    <div className="rounded-xl border border-[var(--secondary)]/20 bg-[var(--background)] p-4 sm:p-6 shadow-xl sticky top-28">
+    <div id="book-now" className="rounded-xl border border-[var(--secondary)]/20 bg-[var(--background)] p-4 sm:p-6 shadow-xl sticky top-28">
+      <h3 className="mb-4 text-xl font-semibold">Book Now</h3>
       <div className="flex items-baseline justify-between mb-6">
           <div>
             <span className="text-2xl font-bold">{formatPrice(apartment.price)}</span>
@@ -237,6 +245,7 @@ export function BookingForm({ apartment, paystackPublicKey, rating, reviewCount,
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
                 min={new Date().toISOString().split('T')[0]}
+                placeholder="Select date"
               />
             </div>
             <div className="p-2">
@@ -247,9 +256,10 @@ export function BookingForm({ apartment, paystackPublicKey, rating, reviewCount,
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
                 min={startDate ? addDays(new Date(startDate), 1).toISOString().split('T')[0] : addDays(new Date(), 1).toISOString().split('T')[0]}
+                placeholder="Select date"
               />
             </div>
-        </div>
+          </div>
         
          <div className="border border-[var(--secondary)] rounded-lg p-2">
           <label className="block text-[10px] font-bold uppercase tracking-wider text-[var(--foreground)]">Phone</label>
@@ -261,8 +271,8 @@ export function BookingForm({ apartment, paystackPublicKey, rating, reviewCount,
             placeholder="Enter at least 10 digits"
           />
         </div>
-        {phone && phone.length < 10 && (
-            <p className="text-xs text-red-500">Phone number must be at least 10 digits</p>
+        {phone && !validPhone && (
+            <p className="text-xs text-red-500">Enter a valid phone number (10–15 digits)</p>
         )}
 
         {/* Coupon Input */}
@@ -305,7 +315,7 @@ export function BookingForm({ apartment, paystackPublicKey, rating, reviewCount,
             </p>
         )}
 
-        {amount > 0 && phone && phone.length >= 10 ? (
+        {amount > 0 && validPhone ? (
            isAvailable ? (
              <PaystackButton {...componentProps} className="w-full rounded-lg bg-[var(--brand)] py-3 font-semibold text-[var(--background)] hover:opacity-90 transition-opacity" />
            ) : (
@@ -317,6 +327,9 @@ export function BookingForm({ apartment, paystackPublicKey, rating, reviewCount,
             <button disabled className="w-full rounded-lg bg-[var(--brand)] py-3 font-semibold text-[var(--background)] opacity-50 cursor-not-allowed">
                 Reserve
             </button>
+        )}
+        {dateError && (
+          <p className="text-xs text-red-500 mt-2">{dateError}</p>
         )}
         
         <p className="text-center text-sm text-[var(--secondary)] mt-2">You won't be charged yet</p>
@@ -342,7 +355,7 @@ export function BookingForm({ apartment, paystackPublicKey, rating, reviewCount,
           )}
           <div className="border-t pt-4 flex justify-between font-bold text-lg">
             <span>Total</span>
-            <span>{(startDate && endDate && phone && phone.length >= 10) ? formatPrice(finalAmount) : "Nil"}</span>
+            <span>{(startDate && endDate && validPhone && days > 0) ? formatPrice(finalAmount) : "Nil"}</span>
           </div>
         </div>
       </div>

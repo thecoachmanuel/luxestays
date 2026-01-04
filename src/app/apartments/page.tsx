@@ -13,7 +13,7 @@ export default async function ApartmentsPage({ searchParams }: PageProps) {
   const allApartments = await getApartments()
   const categoriesData = await getCategories()
   const session = await auth()
-  const favorites = session?.user?.email ? await getFavorites(session.user.email) : []
+  const favorites = session?.user?.id ? await getFavorites(session.user.id) : []
   const favoriteIds = new Set(favorites.map(f => f.apartmentId))
   
   let apartments = allApartments
@@ -70,7 +70,7 @@ export default async function ApartmentsPage({ searchParams }: PageProps) {
               key={apartment.id} 
               apartment={apartment} 
               initialIsFavorite={favoriteIds.has(apartment.id)}
-              currentUserId={session?.user?.email || undefined}
+              currentUserId={session?.user?.id || undefined}
               isAdmin={(session?.user as any)?.role === 'admin'}
             />
             ))}
