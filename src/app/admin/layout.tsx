@@ -3,13 +3,14 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
-import { LayoutDashboard, Users, List, Settings, Mail, PlusCircle, CalendarCheck, Tag, MessageSquare, Bell } from "lucide-react"
+import { LayoutDashboard, Users, List, Settings, Mail, PlusCircle, CalendarCheck, Tag, MessageSquare, Bell, BarChart3 } from "lucide-react"
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
 
   const links = [
     { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+    { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },
     { href: "/admin/notifications", label: "Notifications", icon: Bell },
     { href: "/admin/listings", label: "Manage Listings", icon: List },
     { href: "/admin/bookings", label: "Manage Bookings", icon: CalendarCheck },
@@ -93,14 +94,14 @@ function AdminHeaderNotifications() {
 
   return (
     <div className="flex items-center justify-end mb-4">
-      <button className="relative p-2 rounded-full hover:bg-[var(--secondary)]/10 transition-colors" aria-label="Notifications">
+      <Link href="/admin/notifications" className="relative p-2 rounded-full hover:bg-[var(--secondary)]/10 transition-colors" aria-label="Notifications">
         <Bell className="h-6 w-6 text-[var(--foreground)]" />
         {count > 0 && (
           <span className="absolute -top-1 -right-1 h-5 min-w-[1.25rem] px-1 rounded-full bg-[var(--accent)] text-white text-xs flex items-center justify-center">
             {count}
           </span>
         )}
-      </button>
+      </Link>
     </div>
   )
 }

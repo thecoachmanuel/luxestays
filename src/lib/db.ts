@@ -340,13 +340,112 @@ export async function getSettings(): Promise<AppSettings> {
 }
 
 export async function getAdminNotificationCount(): Promise<number> {
+  const settings = await prisma.appSettings.findUnique({
+      where: { id: "default" },
+      select: { lastUserNotificationAck: true }
+  });
+
+  const lastAck = settings?.lastUserNotificationAck || new Date(0);
+  const last24h = new Date(Date.now() - 24 * 60 * 60 * 1000);
+
   const [pendingBookings, unreadConversations, newMessages, newUsers] = await Promise.all([
     prisma.booking.count({ where: { status: 'pending' } }),
     prisma.conversation.count({ where: { unreadCount: { gt: 0 } } }),
     prisma.contactMessage.count({ where: { status: 'new' } }),
-    prisma.user.count({ where: { createdAt: { gte: new Date(Date.now() - 24 * 60 * 60 * 1000) } } })
+    prisma.user.count({ 
+      where: { 
+        createdAt: { 
+          gte: last24h,
+          gt: lastAck 
+        } 
+      } 
+    })
   ])
   return pendingBookings + unreadConversations + newMessages + newUsers
+}
+
+export async function markAllNotificationsAsRead() {
+    await prisma.$transaction(async (tx) => {
+        // 1. Ack Users
+        await tx.appSettings.upsert({
+            where: { id: "default" },
+            create: { lastUserNotificationAck: new Date() },
+            update: { lastUserNotificationAck: new Date() }
+        });
+
+        // 2. Mark Messages as Read
+        await tx.contactMessage.updateMany({
+            where: { status: 'new' },
+            data: { status: 'read', read: true }
+        });
+
+        // 3. Clear Conversation Unread Counts
+        // First find conversations with unread counts to update messages efficiently
+        // Actually, we can just update all messages sent by users that are unread
+        await tx.message.updateMany({
+            where: { isRead: false, senderRole: 'user' },
+            data: { isRead: true }
+        });
+
+        await tx.conversation.updateMany({
+            where: { unreadCount: { gt: 0 } },
+            data: { unreadCount: 0 }
+        });
+    });
+}
+
+export async function getAnalyticsData(days = 30) {
+  const endDate = new Date();
+  const startDate = new Date();
+  startDate.setDate(startDate.getDate() - days);
+
+  const bookings = await prisma.booking.findMany({
+      where: { createdAt: { gte: startDate } },
+      select: { createdAt: true, totalPrice: true, status: true }
+  });
+
+  const users = await prisma.user.findMany({
+      where: { createdAt: { gte: startDate } },
+      select: { createdAt: true }
+  });
+
+  const messages = await prisma.contactMessage.findMany({
+      where: { createdAt: { gte: startDate } },
+      select: { createdAt: true }
+  });
+
+  const stats = new Map<string, { date: string, revenue: number, bookings: number, users: number, messages: number }>();
+
+  // Initialize all days
+  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+      const dateStr = d.toISOString().split('T')[0];
+      stats.set(dateStr, { date: dateStr, revenue: 0, bookings: 0, users: 0, messages: 0 });
+  }
+
+  bookings.forEach(b => {
+      const dateStr = b.createdAt.toISOString().split('T')[0];
+      const entry = stats.get(dateStr);
+      if (entry) {
+          entry.bookings++;
+          if (b.status === 'confirmed') {
+              entry.revenue += b.totalPrice;
+          }
+      }
+  });
+
+  users.forEach(u => {
+      const dateStr = u.createdAt.toISOString().split('T')[0];
+      const entry = stats.get(dateStr);
+      if (entry) entry.users++;
+  });
+
+  messages.forEach(m => {
+      const dateStr = m.createdAt.toISOString().split('T')[0];
+      const entry = stats.get(dateStr);
+      if (entry) entry.messages++;
+  });
+
+  return Array.from(stats.values()).sort((a, b) => a.date.localeCompare(b.date));
 }
 
 export async function updateSettings(newSettings: Partial<AppSettings>): Promise<void> {

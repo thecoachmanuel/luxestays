@@ -239,6 +239,7 @@ model AppSettings {
   paystackPublicKey String?
   paystackSecretKey String?
   cleaningFee       Float?
+  lastUserNotificationAck DateTime?
 }
 
 model EmailCampaign {
