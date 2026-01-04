@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 import { getApartments, getCategories, getFavorites } from "@/lib/db"
 import { ApartmentCard } from "@/components/ApartmentCard"
 import Link from "next/link"

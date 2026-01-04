@@ -37,12 +37,15 @@ export async function POST(req: Request) {
       return new NextResponse('Missing required fields', { status: 400 })
     }
 
+    const parsedRating = Number(rating)
+    const clampedRating = Math.max(1, Math.min(5, parsedRating))
+
     const newReview: Review = {
       id: Date.now().toString(),
       apartmentId,
-      userId: session.user.email!, // using email as ID if user ID not available in session easily, but typically session.user.id
+      userId: (session.user as any).id || session.user.email!,
       userName: userName || session.user.name || 'Anonymous',
-      rating: Number(rating),
+      rating: clampedRating,
       comment,
       createdAt: new Date().toISOString()
     }

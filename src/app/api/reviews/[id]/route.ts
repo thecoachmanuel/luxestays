@@ -28,7 +28,7 @@ export async function PUT(
   // In `src/auth.ts` (if it exists) we might have mapped id.
   // For now assuming userId in review matches session.user.email
   
-  const isOwner = review.userId === session.user?.email 
+  const isOwner = review.userId === ((session.user as any)?.id || session.user?.email)
   const isAdmin = (session.user as any)?.role === 'admin'
 
   if (!isOwner && !isAdmin) {
@@ -69,7 +69,7 @@ export async function DELETE(
     return new NextResponse('Review not found', { status: 404 })
   }
 
-  const isOwner = review.userId === session.user?.email
+  const isOwner = review.userId === ((session.user as any)?.id || session.user?.email)
   const isAdmin = (session.user as any)?.role === 'admin'
 
   if (!isOwner && !isAdmin) {

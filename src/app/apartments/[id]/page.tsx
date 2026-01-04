@@ -1,4 +1,5 @@
-
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 import Image from "next/image"
 import { notFound } from "next/navigation"
 import { MapPin, Star, Bed, Bath, CheckCircle, Tag, Video } from "lucide-react"
@@ -136,7 +137,7 @@ export default async function ApartmentPage({ params }: PageProps) {
                         <ReviewSection 
                           apartmentId={apartment.id} 
                           reviews={reviews} 
-                          currentUserId={session?.user?.email}
+                          currentUserId={(session?.user as any)?.id || session?.user?.email}
                           isAdmin={(session?.user as any)?.role === 'admin'}
                         />
                     </div>
