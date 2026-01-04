@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 import { useSession, signOut } from 'next-auth/react'
@@ -17,6 +17,36 @@ export function Navbar() {
   const [searchQuery, setSearchQuery] = useState(searchParams?.get('query') || "")
   const [settings, setSettings] = useState<AppSettings | null>(null)
   const customPages = settings?.customPages || []
+
+  const menuRef = useRef<HTMLDivElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        menuRef.current && 
+        !menuRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false)
+      }
+    }
+
+    const handleScroll = () => {
+      setIsOpen(false)
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [isOpen])
 
   useEffect(() => {
     const query = searchParams?.get('query')
@@ -115,6 +145,7 @@ export function Navbar() {
                 {/* User Menu Button */}
                 <div className="relative">
                   <button 
+                    ref={buttonRef}
                     onClick={toggleMenu}
                     className="flex items-center gap-2 border border-[var(--secondary)]/20 rounded-full p-1 pl-3 hover:shadow-md transition-shadow cursor-pointer ml-1 text-[var(--foreground)]"
                   >
@@ -134,7 +165,10 @@ export function Navbar() {
 
                   {/* Dropdown Menu */}
                   {isOpen && (
-                    <div className="absolute right-0 top-full mt-2 w-[calc(100vw-2rem)] max-w-sm sm:w-80 bg-[var(--background)] rounded-xl shadow-[0_6px_16px_rgba(0,0,0,0.12)] border border-[var(--secondary)]/20 py-2 z-50 overflow-y-auto max-h-[80vh]">
+                    <div 
+                      ref={menuRef}
+                      className="absolute right-0 top-full mt-2 w-[calc(100vw-2rem)] max-w-sm sm:w-80 bg-[var(--background)] rounded-xl shadow-[0_6px_16px_rgba(0,0,0,0.12)] border border-[var(--secondary)]/20 py-2 z-50 overflow-y-auto max-h-[80vh]"
+                    >
                       {session ? (
                         <>
                           <div className="px-4 py-3 border-b border-[var(--secondary)]/10">

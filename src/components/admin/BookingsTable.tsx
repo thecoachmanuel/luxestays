@@ -29,14 +29,17 @@ export function BookingsTable({ bookings: initialBookings, apartments, users }: 
     // Search filter
     if (searchTerm) {
       const term = searchTerm.toLowerCase()
-      const user = users.find(u => u.email === booking.userId)
+      const user = users.find(u => u.id === booking.userId)
       const apartment = apartments.find(a => a.id === booking.apartmentId)
       
       const matchesSearch = 
         booking.id.toLowerCase().includes(term) ||
         (booking.paymentReference && booking.paymentReference.toLowerCase().includes(term)) ||
         booking.userId.toLowerCase().includes(term) ||
+        (booking.guestName && booking.guestName.toLowerCase().includes(term)) ||
+        (booking.guestEmail && booking.guestEmail.toLowerCase().includes(term)) ||
         (user?.name && user.name.toLowerCase().includes(term)) ||
+        (user?.email && user.email.toLowerCase().includes(term)) ||
         (apartment?.title && apartment.title.toLowerCase().includes(term))
       
       if (!matchesSearch) return false
@@ -193,7 +196,7 @@ export function BookingsTable({ bookings: initialBookings, apartments, users }: 
   }
 
   const getUserDetails = (userId: string) => {
-    return users.find(u => u.email === userId)
+    return users.find(u => u.id === userId)
   }
 
   const downloadCSV = () => {
@@ -207,8 +210,8 @@ export function BookingsTable({ bookings: initialBookings, apartments, users }: 
       
       return [
         booking.id,
-        user?.name || "N/A",
-        booking.userId,
+        booking.guestName || user?.name || "N/A",
+        booking.guestEmail || user?.email || booking.userId,
         apartmentName,
         new Date(booking.startDate).toLocaleDateString(),
         new Date(booking.endDate).toLocaleDateString(),
@@ -361,8 +364,8 @@ export function BookingsTable({ bookings: initialBookings, apartments, users }: 
                 <div className="flex justify-between border-b border-[var(--secondary)]/10 pb-2">
                   <span className="text-[var(--secondary)]/70">User</span>
                   <div className="text-right">
-                    <div className="font-medium text-[var(--foreground)]">{user?.name || "Unknown"}</div>
-                    <div className="text-xs text-[var(--secondary)]/70">{booking.userId}</div>
+                    <div className="font-medium text-[var(--foreground)]">{booking.guestName || user?.name || "Unknown"}</div>
+                    <div className="text-xs text-[var(--secondary)]/70">{booking.guestEmail || user?.email || booking.userId}</div>
                   </div>
                 </div>
 
@@ -458,9 +461,9 @@ export function BookingsTable({ bookings: initialBookings, apartments, users }: 
                 <tr key={booking.id} className="hover:bg-[var(--secondary)]/5 transition-colors">
                   <td className="whitespace-nowrap px-6 py-4">
                     <div className="text-sm font-bold text-[var(--foreground)]">
-                      {user?.name || booking.userId}
+                      {booking.guestName || user?.name || "Unknown"}
                     </div>
-                    <div className="text-sm text-[var(--secondary)]/70">{booking.userId}</div>
+                    <div className="text-sm text-[var(--secondary)]/70">{booking.guestEmail || user?.email || booking.userId}</div>
                   </td>
                   <td className="whitespace-nowrap px-6 py-4">
                     <div className="text-sm text-[var(--foreground)]">{getApartmentName(booking.apartmentId)}</div>
