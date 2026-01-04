@@ -10,7 +10,7 @@ export async function GET(request: Request) {
 
   const { searchParams } = new URL(request.url)
   const days = parseInt(searchParams.get('days') || '30')
-  const data = await getAnalyticsData(days)
+  const data = await getAnalyticsData({ days })
 
   const csvHeader = 'Date,Revenue,Bookings,New Users,Messages\n'
   const csvRows = data.map(row => 

@@ -394,29 +394,64 @@ export async function markAllNotificationsAsRead() {
     });
 }
 
-export async function getAnalyticsData(days = 30) {
-  const endDate = new Date();
-  const startDate = new Date();
-  startDate.setDate(startDate.getDate() - days);
+export async function getAnalyticsData(options?: { days?: number; start?: Date; end?: Date }) {
+  let startDate: Date;
+  let endDate: Date;
+
+  if (options?.start && options?.end) {
+      startDate = options.start;
+      endDate = options.end;
+  } else {
+      const days = options?.days || 30;
+      endDate = new Date();
+      startDate = new Date();
+      startDate.setDate(startDate.getDate() - days);
+  }
+
+  // Ensure start is before end
+  if (startDate > endDate) {
+      const temp = startDate;
+      startDate = endDate;
+      endDate = temp;
+  }
+  
+  // Normalize to start/end of day
+  startDate.setHours(0, 0, 0, 0);
+  endDate.setHours(23, 59, 59, 999);
 
   const bookings = await prisma.booking.findMany({
-      where: { createdAt: { gte: startDate } },
+      where: { 
+          createdAt: { 
+              gte: startDate,
+              lte: endDate
+          } 
+      },
       select: { createdAt: true, totalPrice: true, status: true }
   });
 
   const users = await prisma.user.findMany({
-      where: { createdAt: { gte: startDate } },
+      where: { 
+          createdAt: { 
+              gte: startDate,
+              lte: endDate
+          } 
+      },
       select: { createdAt: true }
   });
 
   const messages = await prisma.contactMessage.findMany({
-      where: { createdAt: { gte: startDate } },
+      where: { 
+          createdAt: { 
+              gte: startDate,
+              lte: endDate
+          } 
+      },
       select: { createdAt: true }
   });
 
   const stats = new Map<string, { date: string, revenue: number, bookings: number, users: number, messages: number }>();
 
-  // Initialize all days
+  // Initialize all days in range
   for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
       const dateStr = d.toISOString().split('T')[0];
       stats.set(dateStr, { date: dateStr, revenue: 0, bookings: 0, users: 0, messages: 0 });

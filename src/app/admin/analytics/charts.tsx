@@ -14,8 +14,8 @@ export function AnalyticsCharts({ data }: { data: DataPoint[] }) {
   return (
     <div className="space-y-8">
       <div className="grid gap-6 lg:grid-cols-2">
-        <ChartCard title="Daily Revenue" description="Last 30 days revenue from confirmed bookings">
-           <SimpleChart data={data} dataKey="revenue" type="bar" color="#10b981" formatValue={(v) => `$${v}`} />
+        <ChartCard title="Daily Revenue" description="Revenue from confirmed bookings">
+           <SimpleChart data={data} dataKey="revenue" type="bar" color="#10b981" formatValue={(v) => `₦${v.toLocaleString()}`} />
         </ChartCard>
         <ChartCard title="Daily Bookings" description="Number of bookings per day">
            <SimpleChart data={data} dataKey="bookings" type="line" color="#3b82f6" />
