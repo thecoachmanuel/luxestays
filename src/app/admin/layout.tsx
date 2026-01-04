@@ -2,9 +2,10 @@
 
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { signOut } from "next-auth/react"
 import { LayoutDashboard, Users, List, Settings, Mail, PlusCircle, CalendarCheck, Tag, MessageSquare, Bell, BarChart3, LogOut } from "lucide-react"
+import { playNotificationSound, showBrowserNotification } from "@/lib/utils"
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
@@ -90,6 +91,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
 function AdminHeaderNotifications() {
   const [count, setCount] = useState<number>(0)
+  const previousCount = useRef<number>(0)
+  const firstLoad = useRef(true)
 
   useEffect(() => {
     let mounted = true
@@ -98,11 +101,24 @@ function AdminHeaderNotifications() {
         const res = await fetch('/api/admin/notifications', { cache: 'no-store' })
         if (!res.ok) return
         const data = await res.json()
-        if (mounted && typeof data.count === 'number') setCount(data.count)
+        if (mounted && typeof data.count === 'number') {
+          if (firstLoad.current) {
+            firstLoad.current = false
+            previousCount.current = data.count
+            setCount(data.count)
+          } else {
+            if (data.count > previousCount.current) {
+              playNotificationSound()
+              showBrowserNotification("New Notification", "You have a new notification in the admin panel.")
+            }
+            previousCount.current = data.count
+            setCount(data.count)
+          }
+        }
       } catch (_) {}
     }
     fetchCount()
-    const interval = setInterval(fetchCount, 10000)
+    const interval = setInterval(fetchCount, 1000)
     return () => {
       mounted = false
       clearInterval(interval)

@@ -21,6 +21,7 @@ enum BookingStatus {
   pending
   confirmed
   cancelled
+  expired
 }
 
 enum DiscountType {

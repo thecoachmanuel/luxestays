@@ -23,7 +23,7 @@ export interface Booking {
   startDate: Date
   endDate: Date
   totalPrice: number
-  status: 'pending' | 'confirmed' | 'cancelled'
+  status: 'pending' | 'confirmed' | 'cancelled' | 'expired'
   paymentReference?: string
   guestName: string
   guestEmail: string

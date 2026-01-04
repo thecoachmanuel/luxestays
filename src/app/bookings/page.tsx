@@ -132,7 +132,7 @@ export default async function BookingsPage() {
                     </div>
                     <div className="flex items-center text-[var(--secondary)]">
                         <CreditCard className="mr-2 h-4 w-4 text-[var(--secondary)]/40" />
-                        <span className="font-medium">Total: {formatPrice(booking.totalPrice * 100)}</span> {/* booking.totalPrice is stored as whole units, formatPrice expects kobo if passed as raw number? formatPrice implementation usually expects currency units or handles it. Checking utils... */}
+                        <span className="font-medium">Total: {formatPrice(booking.totalPrice)}</span> {/* booking.totalPrice is stored as whole units, formatPrice expects kobo if passed as raw number? formatPrice implementation usually expects currency units or handles it. Checking utils... */}
                     </div>
                   </div>
                 </div>

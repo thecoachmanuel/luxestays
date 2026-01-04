@@ -593,12 +593,26 @@ export async function updateCategory(updatedCategory: Category): Promise<void> {
 
 // --- Bookings ---
 
+export async function checkBookingExpirations() {
+  const now = new Date()
+  await prisma.booking.updateMany({
+    where: {
+      endDate: { lt: now },
+      status: { in: ['pending', 'confirmed'] }
+    },
+    data: {
+      status: 'expired'
+    }
+  })
+}
+
 export async function getBookings(): Promise<Booking[]> {
+  await checkBookingExpirations();
   try {
     const bookings = await prisma.booking.findMany();
     return bookings.map(b => ({
         ...b,
-        status: b.status as 'pending' | 'confirmed' | 'cancelled',
+        status: b.status as 'pending' | 'confirmed' | 'cancelled' | 'expired',
         createdAt: b.createdAt.toISOString(),
         paymentReference: b.paymentReference || undefined,
         couponCode: b.couponCode || undefined,
@@ -661,6 +675,7 @@ export async function deleteBookings(ids: string[]): Promise<void> {
 }
 
 export async function getBookingsByApartment(apartmentId: string): Promise<Booking[]> {
+    await checkBookingExpirations();
     const bookings = await prisma.booking.findMany({
         where: {
             apartmentId,
@@ -669,7 +684,7 @@ export async function getBookingsByApartment(apartmentId: string): Promise<Booki
     });
     return bookings.map(b => ({
         ...b,
-        status: b.status as 'pending' | 'confirmed' | 'cancelled',
+        status: b.status as 'pending' | 'confirmed' | 'cancelled' | 'expired',
         createdAt: b.createdAt.toISOString(),
         paymentReference: b.paymentReference || undefined,
         couponCode: b.couponCode || undefined,
@@ -678,12 +693,13 @@ export async function getBookingsByApartment(apartmentId: string): Promise<Booki
 }
 
 export async function getBookingsByUser(userId: string): Promise<Booking[]> {
+  await checkBookingExpirations();
   const bookings = await prisma.booking.findMany({
       where: { userId }
   });
   return bookings.map(b => ({
         ...b,
-        status: b.status as 'pending' | 'confirmed' | 'cancelled',
+        status: b.status as 'pending' | 'confirmed' | 'cancelled' | 'expired',
         createdAt: b.createdAt.toISOString(),
         paymentReference: b.paymentReference || undefined,
         couponCode: b.couponCode || undefined,
