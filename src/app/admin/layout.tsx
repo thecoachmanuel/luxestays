@@ -1,12 +1,14 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import { LayoutDashboard, Users, List, Settings, Mail, PlusCircle, CalendarCheck, Tag, MessageSquare, Bell, BarChart3 } from "lucide-react"
+import { signOut } from "next-auth/react"
+import { LayoutDashboard, Users, List, Settings, Mail, PlusCircle, CalendarCheck, Tag, MessageSquare, Bell, BarChart3, LogOut } from "lucide-react"
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
+  const router = useRouter()
 
   if (pathname === '/admin/login') {
       return <>{children}</>
@@ -56,6 +58,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <PlusCircle className="h-4 w-4" />
           Add Listing
         </Link>
+
+        <button
+          onClick={async () => {
+            await signOut({ redirect: false })
+            router.push("/admin/login")
+          }}
+          className="w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-red-500 hover:bg-red-50 transition-colors mt-4"
+        >
+          <LogOut className="h-4 w-4" />
+          Logout
+        </button>
     </div>
   )
 

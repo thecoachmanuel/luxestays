@@ -424,6 +424,9 @@ export function BookingsTable({ bookings: initialBookings, apartments, users }: 
                 User
               </th>
               <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-[var(--secondary)]/70">
+                Phone
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-[var(--secondary)]/70">
                 Apartment
               </th>
               <th 

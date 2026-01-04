@@ -13,15 +13,26 @@ export const authConfig = {
       const isAdminLogin = nextUrl.pathname === '/admin/login'
       const role = (auth?.user as any)?.role
 
+      // Protect admin routes
       if (isOnAdmin && !isAdminLogin) {
         if (!isLoggedIn) {
            return Response.redirect(new URL('/admin/login', nextUrl))
         }
         if (role !== 'admin') {
-            // Redirect to home if not admin
-            return Response.redirect(new URL('/', nextUrl))
+            return Response.redirect(new URL('/admin/login?error=AccessDenied', nextUrl))
         }
       }
+
+      // Protect user routes
+      const protectedUserRoutes = ['/profile', '/bookings', '/favorites']
+      const isProtectedUserRoute = protectedUserRoutes.some(route => nextUrl.pathname.startsWith(route))
+
+      if (isProtectedUserRoute) {
+        if (!isLoggedIn) {
+          return Response.redirect(new URL('/signin?callbackUrl=' + encodeURIComponent(nextUrl.pathname), nextUrl))
+        }
+      }
+
       return true
     },
     jwt({ token, user, trigger, session }) {
