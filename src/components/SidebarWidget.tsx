@@ -74,7 +74,7 @@ export function SidebarWidget({ topRatedApartments, whyChooseUs, advertSettings 
       </div>
 
       {/* Top Rated Widget */}
-      <div className="rounded-xl border border-[var(--secondary)]/20 bg-[var(--background)] p-6 shadow-sm">
+      <div className="hidden lg:block rounded-xl border border-[var(--secondary)]/20 bg-[var(--background)] p-6 shadow-sm">
         <h3 className="mb-4 text-lg font-semibold flex items-center gap-2">
           <Star className="h-5 w-5 fill-[var(--brand)] text-[var(--brand)]" />
           Top Rated
