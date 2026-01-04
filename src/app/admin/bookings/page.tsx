@@ -1,5 +1,5 @@
 import { getBookings, getApartments, getUsers } from "@/lib/db"
-import { BookingsTable } from "@/components/admin/BookingsTable"
+import { BookingsClient } from "./bookings-client"
 
 export default async function AdminBookingsPage() {
   const bookings = await getBookings()
@@ -11,10 +11,5 @@ export default async function AdminBookingsPage() {
     new Date(b.createdAt || b.startDate).getTime() - new Date(a.createdAt || a.startDate).getTime()
   )
 
-  return (
-    <div className="container mx-auto py-12 px-4">
-      <h1 className="mb-8 text-3xl font-bold">Manage Bookings</h1>
-      <BookingsTable bookings={sortedBookings} apartments={apartments} users={users} />
-    </div>
-  )
+  return <BookingsClient bookings={sortedBookings} apartments={apartments} users={users} />
 }
