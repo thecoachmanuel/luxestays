@@ -8,6 +8,10 @@ import { LayoutDashboard, Users, List, Settings, Mail, PlusCircle, CalendarCheck
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
 
+  if (pathname === '/admin/login') {
+      return <>{children}</>
+  }
+
   const links = [
     { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
     { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },

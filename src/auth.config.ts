@@ -10,10 +10,13 @@ export const authConfig = {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user
       const isOnAdmin = nextUrl.pathname.startsWith('/admin')
+      const isAdminLogin = nextUrl.pathname === '/admin/login'
       const role = (auth?.user as any)?.role
 
-      if (isOnAdmin) {
-        if (!isLoggedIn) return false // Redirect to login
+      if (isOnAdmin && !isAdminLogin) {
+        if (!isLoggedIn) {
+           return Response.redirect(new URL('/admin/login', nextUrl))
+        }
         if (role !== 'admin') {
             // Redirect to home if not admin
             return Response.redirect(new URL('/', nextUrl))

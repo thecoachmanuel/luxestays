@@ -201,7 +201,7 @@ export function BookingsTable({ bookings: initialBookings, apartments, users }: 
 
   const downloadCSV = () => {
     // Define headers
-    const headers = ["Booking ID", "User Name", "User Email", "Apartment", "Start Date", "End Date", "Total Price", "Status", "Payment Ref", "Booked At"]
+    const headers = ["Booking ID", "User Name", "User Email", "User Phone", "Apartment", "Start Date", "End Date", "Total Price", "Status", "Payment Ref", "Booked At"]
     
     // Map data to rows
     const rows = filteredBookings.map(booking => {
@@ -212,6 +212,7 @@ export function BookingsTable({ bookings: initialBookings, apartments, users }: 
         booking.id,
         booking.guestName || user?.name || "N/A",
         booking.guestEmail || user?.email || booking.userId,
+        booking.guestPhone || user?.phone || "N/A",
         apartmentName,
         new Date(booking.startDate).toLocaleDateString(),
         new Date(booking.endDate).toLocaleDateString(),
@@ -463,10 +464,19 @@ export function BookingsTable({ bookings: initialBookings, apartments, users }: 
                     <div className="text-sm font-bold text-[var(--foreground)]">
                       {booking.guestName || user?.name || "Unknown"}
                     </div>
-                    <div className="text-sm text-[var(--secondary)]/70">{booking.guestEmail || user?.email || booking.userId}</div>
+                    <div className="text-xs text-[var(--secondary)]/70">
+                      {booking.guestEmail || user?.email || booking.userId}
+                    </div>
                   </td>
                   <td className="whitespace-nowrap px-6 py-4">
-                    <div className="text-sm text-[var(--foreground)]">{getApartmentName(booking.apartmentId)}</div>
+                    <div className="text-sm text-[var(--foreground)]">
+                      {booking.guestPhone || user?.phone || "N/A"}
+                    </div>
+                  </td>
+                  <td className="whitespace-nowrap px-6 py-4">
+                    <div className="text-sm text-[var(--foreground)]">
+                      {getApartmentName(booking.apartmentId)}
+                    </div>
                   </td>
                   <td className="whitespace-nowrap px-6 py-4">
                     <div className="text-sm text-[var(--foreground)]">

@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Apartment, User } from '@/types'
-import { X, Calendar, User as UserIcon, Building, DollarSign, Check } from 'lucide-react'
+import { X, Calendar, User as UserIcon, Building, DollarSign, Check, Search, ChevronDown } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { formatPrice } from '@/lib/utils'
 
@@ -31,6 +31,40 @@ export function AddBookingModal({ isOpen, onClose, apartments, users }: AddBooki
   const [status, setStatus] = useState('confirmed')
   const [customPrice, setCustomPrice] = useState(false)
 
+  // Search States
+  const [aptSearch, setAptSearch] = useState('')
+  const [isAptDropdownOpen, setIsAptDropdownOpen] = useState(false)
+  const [userSearch, setUserSearch] = useState('')
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false)
+
+  const aptDropdownRef = useRef<HTMLDivElement>(null)
+  const userDropdownRef = useRef<HTMLDivElement>(null)
+
+  // Close dropdowns on outside click
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (aptDropdownRef.current && !aptDropdownRef.current.contains(event.target as Node)) {
+        setIsAptDropdownOpen(false)
+      }
+      if (userDropdownRef.current && !userDropdownRef.current.contains(event.target as Node)) {
+        setIsUserDropdownOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  // Filtered Lists
+  const filteredApartments = apartments.filter(apt => 
+    apt.title.toLowerCase().includes(aptSearch.toLowerCase()) ||
+    apt.location.toLowerCase().includes(aptSearch.toLowerCase())
+  )
+
+  const filteredUsers = users.filter(u => 
+    (u.name && u.name.toLowerCase().includes(userSearch.toLowerCase())) ||
+    u.email.toLowerCase().includes(userSearch.toLowerCase())
+  )
+
   // Auto-fill user details when existing user selected
   useEffect(() => {
     if (userMode === 'existing' && selectedUserId) {
@@ -39,11 +73,13 @@ export function AddBookingModal({ isOpen, onClose, apartments, users }: AddBooki
         setGuestName(user.name || '')
         setGuestEmail(user.email || '')
         setGuestPhone(user.phone || '')
+        // Update search text if not already matching (prevents loop if typing)
+        if (userSearch !== user.email && userSearch !== user.name) {
+             setUserSearch(user.name || user.email)
+        }
       }
-    } else if (userMode === 'new') {
-        // Don't clear fields, allow manual entry
     }
-  }, [selectedUserId, userMode, users])
+  }, [selectedUserId, userMode, users]) // Removed userSearch from deps to avoid loop
 
   // Calculate Price
   useEffect(() => {
@@ -96,12 +132,15 @@ export function AddBookingModal({ isOpen, onClose, apartments, users }: AddBooki
       onClose()
       // Reset form
       setApartmentId('')
+      setAptSearch('')
       setStartDate('')
       setEndDate('')
       setGuestName('')
       setGuestEmail('')
       setGuestPhone('')
       setTotalPrice(0)
+      setSelectedUserId('')
+      setUserSearch('')
     } catch (err: any) {
       setError(err.message)
     } finally {
@@ -130,22 +169,50 @@ export function AddBookingModal({ isOpen, onClose, apartments, users }: AddBooki
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Apartment & Dates */}
           <div className="grid gap-4 md:grid-cols-2">
-            <div>
+            <div ref={aptDropdownRef} className="relative">
               <label className="mb-1 block text-sm font-medium">Apartment</label>
               <div className="relative">
                 <Building className="absolute left-3 top-2.5 h-4 w-4 text-gray-500" />
-                <select
+                <input
+                  type="text"
                   required
-                  value={apartmentId}
-                  onChange={(e) => setApartmentId(e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 py-2 pl-9 pr-4 focus:border-black focus:outline-none"
-                >
-                  <option value="">Select Apartment</option>
-                  {apartments.map(apt => (
-                    <option key={apt.id} value={apt.id}>{apt.title} - {formatPrice(apt.price)}/night</option>
-                  ))}
-                </select>
+                  value={aptSearch}
+                  onChange={(e) => {
+                    setAptSearch(e.target.value)
+                    setIsAptDropdownOpen(true)
+                    if (e.target.value === '') setApartmentId('')
+                  }}
+                  onFocus={() => setIsAptDropdownOpen(true)}
+                  placeholder="Search apartment..."
+                  className="w-full rounded-lg border border-gray-300 py-2 pl-9 pr-8 focus:border-black focus:outline-none"
+                />
+                <ChevronDown className="absolute right-3 top-2.5 h-4 w-4 text-gray-400 pointer-events-none" />
               </div>
+              
+              {isAptDropdownOpen && (
+                <div className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-lg border border-gray-200 bg-white shadow-lg">
+                  {filteredApartments.length === 0 ? (
+                    <div className="p-3 text-sm text-gray-500">No apartments found</div>
+                  ) : (
+                    filteredApartments.map(apt => (
+                      <div
+                        key={apt.id}
+                        onClick={() => {
+                          setApartmentId(apt.id)
+                          setAptSearch(apt.title)
+                          setIsAptDropdownOpen(false)
+                        }}
+                        className={`cursor-pointer px-4 py-2 text-sm hover:bg-gray-50 ${apartmentId === apt.id ? 'bg-gray-50 font-medium' : ''}`}
+                      >
+                        <div className="text-gray-900">{apt.title}</div>
+                        <div className="text-xs text-gray-500">{formatPrice(apt.price)}/night • {apt.location}</div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              )}
+              {/* Hidden Select for HTML5 validation if needed, though input required works too if logic matches */}
+              <input type="hidden" name="apartmentId" value={apartmentId} required />
             </div>
             
             <div className="grid grid-cols-2 gap-2">
@@ -203,18 +270,47 @@ export function AddBookingModal({ isOpen, onClose, apartments, users }: AddBooki
             </div>
 
             {userMode === 'existing' && (
-              <div className="mb-4">
+              <div className="mb-4 relative" ref={userDropdownRef}>
                 <label className="mb-1 block text-sm font-medium">Select User</label>
-                <select
-                  value={selectedUserId}
-                  onChange={(e) => setSelectedUserId(e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-black focus:outline-none"
-                >
-                  <option value="">Select a user...</option>
-                  {users.map(u => (
-                    <option key={u.id} value={u.id}>{u.name || u.email} ({u.email})</option>
-                  ))}
-                </select>
+                <div className="relative">
+                  <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-500" />
+                  <input
+                    type="text"
+                    value={userSearch}
+                    onChange={(e) => {
+                        setUserSearch(e.target.value)
+                        setIsUserDropdownOpen(true)
+                        if (e.target.value === '') setSelectedUserId('')
+                    }}
+                    onFocus={() => setIsUserDropdownOpen(true)}
+                    placeholder="Search by name or email..."
+                    className="w-full rounded-lg border border-gray-300 py-2 pl-9 pr-8 focus:border-black focus:outline-none"
+                  />
+                   <ChevronDown className="absolute right-3 top-2.5 h-4 w-4 text-gray-400 pointer-events-none" />
+                </div>
+
+                {isUserDropdownOpen && (
+                    <div className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-lg border border-gray-200 bg-white shadow-lg">
+                      {filteredUsers.length === 0 ? (
+                        <div className="p-3 text-sm text-gray-500">No users found</div>
+                      ) : (
+                        filteredUsers.map(u => (
+                          <div
+                            key={u.id}
+                            onClick={() => {
+                              setSelectedUserId(u.id)
+                              setUserSearch(u.name || u.email)
+                              setIsUserDropdownOpen(false)
+                            }}
+                            className={`cursor-pointer px-4 py-2 text-sm hover:bg-gray-50 ${selectedUserId === u.id ? 'bg-gray-50 font-medium' : ''}`}
+                          >
+                            <div className="text-gray-900">{u.name || "No Name"}</div>
+                            <div className="text-xs text-gray-500">{u.email}</div>
+                          </div>
+                        ))
+                      )}
+                    </div>
+                  )}
               </div>
             )}
 

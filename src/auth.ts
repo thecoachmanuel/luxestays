@@ -18,7 +18,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const password = credentials.password as string
 
         // Hardcoded admin check
-        if (email === "admin" && password === "admin") {
+        if (email === "admin" && password === "admin123") {
           return {
             id: "admin-id",
             name: "Administrator",
