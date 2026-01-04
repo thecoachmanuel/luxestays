@@ -89,7 +89,7 @@ export async function sendBookingInvoiceEmail(booking: Booking, apartment: Apart
       </div>
       
       <div style="text-align: center; padding: 20px; font-size: 12px; color: #aaa;">
-        &copy; ${new Date().getFullYear()} ${settings.appName || 'Apartment Booking'}. All rights reserved.
+        &copy; ${new Date().getFullYear()} ${settings.appName || 'LuxeStays'}. All rights reserved.
       </div>
     </div>
   `;
@@ -100,7 +100,7 @@ export async function sendBookingInvoiceEmail(booking: Booking, apartment: Apart
 export async function sendWelcomeEmail(email: string, name: string) {
   const settings = await getSettings();
   const { siteName, logo, footer, footerSettings, seoSettings, address, colorPalette, welcomeEmail } = settings;
-  const appName = siteName || settings.appName || "CityDwell Apartments";
+  const appName = siteName || settings.appName || "LuxeStays";
   const primaryColor = colorPalette?.brand || '#000000';
   const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
   

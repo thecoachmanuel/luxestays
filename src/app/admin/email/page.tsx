@@ -140,7 +140,7 @@ export default function BulkEmailPage() {
               <input
                 {...register("subject", { required: true })}
                 className="mt-1 block w-full rounded-md border border-[var(--secondary)]/20 bg-[var(--background)] text-[var(--foreground)] px-3 py-2 shadow-sm focus:border-[var(--brand)] focus:outline-none focus:ring-[var(--brand)]"
-                placeholder="Welcome to CityDwell Apartments"
+                placeholder="Welcome to LuxeStays"
               />
             </div>
 

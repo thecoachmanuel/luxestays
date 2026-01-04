@@ -201,10 +201,10 @@ export async function deleteUser(id: string): Promise<void> {
 
 const DEFAULT_SETTINGS: AppSettings = {
       id: "default",
-      appName: "Apartment Booking",
-      siteName: "CityDwell Apartments",
+      appName: "LuxeStays",
+      siteName: "LuxeStays",
       siteDescription: "Premium Apartment Booking",
-      contactEmail: "contact@citydwell.com",
+      contactEmail: "contact@luxestays.com",
       contactPhone: "+1234567890",
       address: "123 Luxury Lane",
       currency: "USD",
@@ -216,7 +216,7 @@ const DEFAULT_SETTINGS: AppSettings = {
         textColor: "#FFFFFF"
       },
       footer: {
-        copyrightText: "© 2026 CityDwell Apartments",
+        copyrightText: "© 2026 LuxeStays",
         columns: []
       },
       paystackPublicKey: process.env.NEXT_PUBLIC_PAYSTACK_KEY,
@@ -233,8 +233,8 @@ const DEFAULT_SETTINGS: AppSettings = {
       },
       welcomeEmail: {
         enabled: true,
-        subject: "Welcome to CityDwell Apartments!",
-        body: "<p>Hi {{name}},</p><p>Welcome to CityDwell Apartments! We are excited to have you on board.</p><p>Best regards,<br>The CityDwell Team</p>"
+        subject: "Welcome to LuxeStays!",
+        body: "<p>Hi {{name}},</p><p>Welcome to LuxeStays! We are excited to have you on board.</p><p>Best regards,<br>The LuxeStays Team</p>"
       },
       colorPalette: {
         brand: '#000000',
@@ -272,7 +272,7 @@ const DEFAULT_SETTINGS: AppSettings = {
             subtitle: "Experience luxury living in the heart of the city",
             heroImage: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=2070&auto=format&fit=crop",
             storyTitle: "Our Story",
-            storyContent: "Founded with a vision to redefine luxury accommodation, CityDwell Apartments has been serving guests from around the world. We believe in providing not just a place to sleep, but an experience to remember. Our carefully curated apartments offer the perfect blend of comfort, style, and convenience.",
+            storyContent: "Founded with a vision to redefine luxury accommodation, LuxeStays has been serving guests from around the world. We believe in providing not just a place to sleep, but an experience to remember. Our carefully curated apartments offer the perfect blend of comfort, style, and convenience.",
             storyImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop",
             missionTitle: "Our Mission",
             missionContent: "To provide exceptional hospitality and comfortable living spaces that feel like home, ensuring every guest enjoys a seamless and memorable stay.",

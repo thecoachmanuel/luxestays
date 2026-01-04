@@ -43,7 +43,7 @@ export default async function BookingsPage() {
     )
   }
 
-  const bookings = await getBookingsByUser(session.user.email)
+  const bookings = await getBookingsByUser(session.user.id)
   
   // Fetch apartment details for each booking
   const bookingsWithApartments = await Promise.all(

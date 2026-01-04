@@ -72,10 +72,10 @@ export function Navbar() {
               {/* Logo */}
               <Link href="/" className="flex items-center gap-2 flex-shrink-0">
                  {settings?.appLogo ? (
-                    <img src={settings.appLogo} alt={settings.appName || "CityDwell Apartments"} className="h-8 w-auto object-contain" />
+                    <img src={settings.appLogo} alt={settings.appName || "LuxeStays"} className="h-8 w-auto object-contain" />
                  ) : (
                     <span className="text-2xl font-bold text-[var(--brand)]">
-                      {settings?.appName || "CityDwell Apartments"}
+                      {settings?.appName || "LuxeStays"}
                     </span>
                  )}
               </Link>

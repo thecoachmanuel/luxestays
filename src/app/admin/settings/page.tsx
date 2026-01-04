@@ -23,7 +23,7 @@ export default function SettingsPage() {
       customPages: [],
       emailSettings: {
         provider: 'mock',
-        fromName: 'Apartment Booking',
+        fromName: 'LuxeStays',
         fromEmail: 'noreply@example.com'
       },
       welcomeEmail: {

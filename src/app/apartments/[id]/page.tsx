@@ -66,7 +66,7 @@ export default async function ApartmentPage({ params }: PageProps) {
                     <div className="border-b pb-8 border-[var(--secondary)]/20">
                         <div className="flex justify-between items-start">
                              <div>
-                                <h2 className="text-xl font-semibold text-[var(--foreground)]">Entire apartment hosted by CityDwell Apartments</h2>
+                                <h2 className="text-xl font-semibold text-[var(--foreground)]">Entire apartment hosted by LuxeStays</h2>
                                 <div className="mt-1 text-[var(--secondary)] text-sm">
                                     {apartment.bedrooms} bedrooms · {apartment.bathrooms} bathrooms
                                 </div>
